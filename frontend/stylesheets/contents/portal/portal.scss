@@ -1,0 +1,328 @@
+@use "../../variables" as v;
+@use "../../animations";
+@use "../../main";
+
+$fontNormal: calc(v.$defaultSize * 0.8);
+$fontAction: calc(v.$defaultSize);
+$fontProviderIcon: calc(v.$defaultSize * 1.1);
+$fontFooter: calc(v.$defaultSize * 0.7);
+
+body {
+  font-family: v.$systemfont;
+  min-height: 100dvh;
+  position: relative;
+  background: v.$colorBackground;
+  color: v.$colorBlack;
+}
+
+button,
+input,
+textarea,
+select,
+.btn {
+  outline: none;
+  border: none;
+  font-family: v.$systemfont;
+  font-size: $fontNormal;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+::selection {
+  background: v.$colorBlack;
+  color: v.$colorWhite;
+}
+
+.hr {
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deco {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../../../../public/assets/images/bg-signin-beach-wedding.avif");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(v.$colorPrimary, 0.2);
+    top: -100px;
+    right: -100px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(v.$colorPrimary, 0.2);
+    bottom: -150px;
+    left: -150px;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - (v.$bigPadding * 2));
+  max-width: 420px;
+  max-height: calc(100% - (v.$bigPadding * 2));
+  padding: v.$bigPadding;
+  background: rgba(v.$colorBackground, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: v.$boxShadow;
+  border: 1px solid rgba(v.$colorWhite, 0.5);
+  animation: appUpIn 0.3s ease-out;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(v.$colorInfoDark, 0.5) #00000000;
+
+  .title {
+    text-align: center;
+    margin-bottom: v.$smallPadding;
+    .logo-icon {
+      display: block;
+      width: 125px;
+      margin: 0 auto;
+    }
+    .big-icon {
+      font-size: v.$dialogueSize;
+    }
+    h1 {
+      font-size: v.$dialogueSize;
+      font-weight: 600;
+      color: v.$colorBlack;
+      margin-bottom: v.$tinyPadding;
+    }
+  }
+
+  .motto {
+    text-align: center;
+    margin-bottom: v.$bigPadding;
+
+    .error {
+      font-size: calc($fontNormal * 1.12);
+      font-weight: 600;
+    }
+    p {
+      font-size: $fontNormal;
+      color: v.$colorBlack;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+
+  .languages {
+    width: 100%;
+    margin: v.$mediumPadding 0;
+    .btn {
+      font-size: calc(v.$defaultSize * 0.8);
+      padding: v.$smallPadding;
+      border-radius: 10px;
+      border-bottom: 1px solid v.$colorBlack;
+      width: fit-content;
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      .dropdown {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .form {
+    width: 100%;
+    display: block;
+    .input-group {
+      width: 100%;
+      margin-bottom: v.$mediumPadding;
+      .input-field {
+        margin-bottom: v.$mediumPadding;
+        label {
+          display: block;
+          margin-bottom: v.$tinyPadding;
+          font-size: $fontNormal;
+          color: v.$colorBlack;
+          font-weight: 500;
+        }
+
+        .input-wrapper {
+          position: relative;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          gap: 0;
+          background: rgba(v.$colorWhite, 0.6);
+          border: 1px solid rgba(v.$colorWhite, 0.5);
+          border-radius: 10px;
+          overflow: hidden;
+          &:has(:focus) {
+            border-color: v.$colorBlack;
+            background: rgba(v.$colorWhite, 0.8);
+          }
+          i,
+          img {
+            flex-shrink: 0;
+            color: v.$colorBlack;
+            margin-left: 10px;
+          }
+          img {
+            max-width: 24px;
+          }
+          .btn-unlink {
+            flex-shrink: 0;
+            font-size: calc(v.$defaultSize * 0.8);
+            font-weight: 500;
+            // padding: 2px 10px;
+            // background-color: v.$colorVariantBlack;
+            color: v.$colorDanger;
+            // border-radius: 5px;
+            margin-right: 10px;
+          }
+
+          input {
+            width: fit-content;
+            min-width: 0;
+            flex-grow: 1;
+            padding: 10px;
+            background: #00000000;
+            font-size: $fontNormal;
+            color: v.$colorBlack;
+            transition: all 0.3s ease;
+            &.otp {
+              letter-spacing: 5px;
+            }
+          }
+        }
+        .ft-sm {
+          font-size: $fontFooter;
+          color: v.$colorBlack;
+          font-style: italic;
+          margin-top: v.$tinyPadding;
+          text-align: justify;
+          text-align-last: left;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .button-group {
+      width: 100%;
+      .btn {
+        background: v.$colorVariantBlack;
+        color: v.$colorWhite;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-size: $fontAction;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: v.$smallPadding;
+        text-align: center;
+        &.btn-restart {
+          background-color: v.$colorPrimary;
+          margin-bottom: 0;
+        }
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: v.$boxShadow;
+        }
+      }
+    }
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: v.$bigPadding 0;
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(v.$colorBlack, 0.2);
+    }
+    span {
+      padding: 0 15px;
+      font-size: $fontNormal;
+      color: v.$colorBlack;
+    }
+  }
+
+  .login-providers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    .btn {
+      padding: 10px;
+      border: 1px solid rgba(v.$colorWhite, 0.7);
+      border-radius: 10px;
+      background: rgba(v.$colorWhite, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: $fontNormal;
+      color: v.$colorBlack;
+      text-decoration: none;
+      &:hover {
+        background: v.$colorWhite;
+        transform: translateY(-1px);
+        box-shadow: v.$boxShadow;
+      }
+      i {
+        font-size: $fontProviderIcon;
+        color: v.$colorBlack;
+      }
+      .provider-icon {
+        display: block;
+        width: $fontProviderIcon;
+      }
+    }
+  }
+
+  .footer {
+    text-align: justify;
+    text-align-last: center;
+    margin-top: v.$bigPadding;
+    font-size: $fontFooter;
+    color: v.$colorBlack;
+
+    a {
+      color: v.$colorAnchorDark;
+      text-shadow: 0 0 3px v.$colorWhite;
+      font-weight: 600;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &.out {
+    animation: appUpOut 0.3s ease-in forwards;
+  }
+}

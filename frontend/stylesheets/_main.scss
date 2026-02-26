@@ -1,0 +1,86 @@
+@use "./variables" as v;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16.2px;
+  // height: 100svh;
+  scroll-behavior: smooth;
+  // scrollbar-color: v.$pm1 rgba(v.$px1, 0.5);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(v.$colorInfoDark, 0.5) v.$colorBackground;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  font-family: v.$systemfont;
+}
+
+body {
+  width: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: v.$colorBackground;
+  color: v.$colorBlack;
+  font-size: v.$defaultSize;
+}
+
+.app {
+  min-width: 100%;
+  min-height: 100dvh;
+}
+
+button,
+input,
+textarea {
+  font-family: v.$systemfont;
+  border: none;
+  outline: none;
+  font-size: v.$defaultSize;
+}
+
+button,
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+textarea {
+  resize: none;
+  scrollbar-width: thin;
+}
+textarea {
+  resize: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.center {
+  text-align: center;
+}
+img {
+  pointer-events: none;
+}
+
+div {
+  outline: none;
+}
+
+.hidden-preload {
+  display: none;
+}
+
+.ft-big {
+  font-size: v.$dialogueSize;
+}

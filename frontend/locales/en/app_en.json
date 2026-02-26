@@ -1,0 +1,14 @@
+{
+  "loading": "Loading",
+  "error": "Something Went Wrong",
+  "nav_orders": "Orders",
+  "nav_explore": "Explore Templates",
+  "nav_account": "Account Settings",
+  "nav_tickets": "Tickets",
+  "acc_logout_msg": "Logout now?",
+  "acc_logout_btn": "Logout from IngetYa",
+  "acc_luna_settings": "Luunna Account Settings",
+  "explore_desc": "Find various templates that match your feelings",
+  "explore_buy": "Choose",
+  "explore_preview": "Preview"
+}

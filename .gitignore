@@ -1,0 +1,12 @@
+.env
+node_modules
+package-lock.json
+ex
+dist
+public/*.html
+public/bundle
+public/assets/fapro
+public/json/build
+views
+config
+category

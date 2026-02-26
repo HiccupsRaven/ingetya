@@ -1,0 +1,221 @@
+@use "../variables" as v;
+
+$fontNormal: calc(v.$defaultSize * 0.8);
+$fontAction: calc(v.$defaultSize);
+$fontProviderIcon: calc(v.$defaultSize * 1.1);
+$fontFooter: calc(v.$defaultSize * 0.7);
+
+$bgColor: rgba(v.$colorVariantBlack, 0.75);
+$textColor: #f0f2f3;
+$bgCardPrimary: #1c222c;
+$bgCardSecondary: #0b111d;
+$colorPrimary: #a395e8;
+$shadowCard: $colorPrimary;
+$icColor: $colorPrimary;
+$anchorColor: $colorPrimary;
+
+.modal {
+  z-index: 98;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $bgColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $textColor;
+  .box {
+    text-align: center;
+    padding: 20px;
+    width: calc(100% - 40px);
+    max-width: 500px;
+    max-height: calc(100% - 40px);
+    scrollbar-width: thin;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    background: $bgCardPrimary;
+    border-radius: 10px;
+    animation: modal_in 0.3s;
+    box-shadow: -3px 3px 5px $colorPrimary;
+    .ic {
+      font-size: 2.2em;
+      color: $colorPrimary;
+    }
+    .inf {
+      margin: 20px 0;
+      font-weight: 300;
+      font-size: v.$defaultSize;
+      ul,
+      ol {
+        margin: 10px 0;
+        list-style-position: inside;
+        li {
+          text-align: left;
+        }
+      }
+      a {
+        color: $colorPrimary;
+        text-decoration: none;
+      }
+      p,
+      li {
+        line-height: 1.5;
+        word-break: break-all;
+        word-break: break-word;
+        hyphens: auto;
+      }
+      img {
+        margin: 0 auto;
+        margin-top: 10px;
+        max-width: 100%;
+        max-height: 300px;
+      }
+      input[type="text"],
+      textarea {
+        color: $textColor;
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        background: $bgCardSecondary;
+        font-size: v.$dialogueSize;
+      }
+      textarea {
+        scrollbar-width: thin;
+      }
+      input[type="text"] {
+        text-align: center;
+      }
+      .modal-radio-form {
+        width: 100%;
+        margin-top: 10px;
+        .radio {
+          width: 100%;
+          border-radius: 10px;
+          border: 1px solid $colorPrimary;
+          margin-bottom: 10px;
+          label {
+            padding: 14px;
+            display: block;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            input[type="radio"] {
+              -webkit-appearance: none;
+              appearance: none;
+              background: $bgCardSecondary;
+              margin: 0;
+              font: inherit;
+              color: $colorPrimary;
+              width: 1.15em;
+              height: 1.15em;
+              border-radius: 50%;
+              display: grid;
+              place-content: center;
+              cursor: pointer;
+            }
+            input[type="radio"]::before {
+              content: "";
+              width: 0.65em;
+              height: 0.65em;
+              border-radius: 50%;
+              transform: scale(0);
+              transition: 120ms transform ease-in-out;
+              box-shadow: inset 1em 1em $bgCardSecondary;
+              background-color: $colorPrimary;
+            }
+            input[type="radio"]:checked {
+              background-color: $colorPrimary;
+              transform: scale(1);
+            }
+            input[type="radio"]:checked::before {
+              transform: scale(1);
+            }
+            p {
+              max-width: calc(100% - (1.15em + 10px));
+            }
+          }
+        }
+      }
+      .radio:has(:checked) {
+        border-color: $colorPrimary;
+        background-color: rgba($colorPrimary, 0.2);
+      }
+    }
+    .acts {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: center;
+      align-content: center;
+      width: 100%;
+      .btn {
+        width: calc(100% / 2);
+        padding: 10px;
+        border-radius: 5px;
+        font-size: v.$defaultSize;
+        color: $textColor;
+        &.btn-cancel {
+          background: $bgCardSecondary;
+        }
+        &.btn-ok {
+          background: $colorPrimary;
+          color: $bgCardSecondary;
+        }
+      }
+
+      &.act {
+        justify-content: center;
+        .btn {
+          width: 100%;
+          background: $colorPrimary;
+          color: $bgCardSecondary;
+        }
+      }
+    }
+  }
+  &.out {
+    .box {
+      animation: modal_out 0.3s forwards;
+    }
+  }
+}
+
+.loading {
+  z-index: 98;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $bgColor;
+  color: $bgCardSecondary;
+  .box {
+    width: fit-content;
+    max-width: calc(100% - 40px);
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: $colorPrimary;
+    padding: 30px 40px;
+    border-radius: 20px;
+    animation: appDownIn 0.3s ease-out;
+    .spinner {
+      font-size: 2em;
+    }
+    p {
+      font-size: 1.5em;
+    }
+  }
+  &.out {
+    .box {
+      animation: appDownOut 0.3s ease-in forwards;
+    }
+  }
+}
