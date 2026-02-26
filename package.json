@@ -34,15 +34,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HiccupsRaven/ingetya.com.git"
+    "url": "git+https://github.com/HiccupsRaven/ingetya.git"
   },
   "keywords": [],
   "author": "Devanka761 <contact@devanka.id> (https://devanka.id/)",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/HiccupsRaven/ingetya.com/issues"
+    "url": "https://github.com/HiccupsRaven/ingetya/issues"
   },
-  "homepage": "https://github.com/HiccupsRaven/ingetya.com#readme",
+  "homepage": "https://github.com/HiccupsRaven/ingetya#readme",
   "dependencies": {
     "connect-mongo": "^6.0.0",
     "dotenv": "^17.2.3",
