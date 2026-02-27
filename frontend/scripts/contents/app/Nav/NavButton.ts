@@ -1,15 +1,14 @@
 import { kel } from "../../../lib/kel"
 import { lang } from "../languageApp"
-import { CMainKey } from "../Main"
-import { Nav } from "../Nav"
+import { INavButtonName, Nav } from "../Nav"
 
 export class NavButton {
   private el!: HTMLAnchorElement
-  private name: CMainKey
+  private name: INavButtonName
   private icon: string
   private parent: Nav
   private locked: boolean = false
-  constructor(parent: Nav, name: CMainKey, icon: string) {
+  constructor(parent: Nav, name: INavButtonName, icon: string) {
     this.parent = parent
     this.name = name
     this.icon = icon
@@ -35,9 +34,6 @@ export class NavButton {
       e.preventDefault()
       if (this.parent.king.isLocked) return
 
-      this.parent.activate(this.name)
-      this.parent.runOpenClose(false)
-      this.parent.king.brand.pageName = lang(`nav_${this.name}`)
       this.parent.king.main.setNewSection(this.name)
     }
   }

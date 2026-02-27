@@ -10,5 +10,12 @@
   "acc_luna_settings": "Pengaturan Akun Luunna",
   "explore_desc": "Temukan berbagai template yang cocok dengan perasaan kamu",
   "explore_buy": "Pilih",
-  "explore_preview": "Lihat"
+  "explore_preview": "Lihat",
+  "orders_desc": "Kelola semua undangan digital yang udah kamu bikin",
+  "order_add": "Tambah Pesanan",
+  "order_event_date": "Acara",
+  "order_theme": "Template:",
+  "order_status_working": "Sedang Dibangun",
+  "order_status_unpaid": "Menunggu Pembayaran",
+  "order_active_edit": "Edit Template"
 }

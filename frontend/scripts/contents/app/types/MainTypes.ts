@@ -1,9 +1,9 @@
 import { IAny } from "../../../types/LibTypes"
-import { CMainKey } from "../Main"
+import { INavButtonName } from "../Nav"
 
 export interface CMain {
   isLocked: boolean
-  readonly id: CMainKey
+  readonly id: INavButtonName
   html: HTMLElement
   destroy(): IAny
   run(): IAny

@@ -4,11 +4,12 @@ import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
 import { AccountMemory } from "../../contentManager"
 import { changeLang, createLanguageButton, lang } from "../languageApp"
-import { CMainKey, Main } from "../Main"
+import { Main } from "../Main"
+import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
 
 export class MainAccount implements CMain {
-  id: CMainKey = "account"
+  id: INavButtonName = "account"
   private locked: boolean = false
   private el!: HTMLElement
   private main: Main

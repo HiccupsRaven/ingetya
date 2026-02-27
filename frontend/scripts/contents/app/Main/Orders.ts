@@ -2,16 +2,16 @@ import { futor, kel } from "../../../lib/kel"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
-import { IResponse } from "../../../types/LibTypes"
-import { IProduct, ProductsMemory } from "../../contentManager"
+import { IOrder, OrdersMemory } from "../../contentManager"
 import { lang } from "../languageApp"
 import { Main } from "../Main"
 import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
-import { Product } from "./Explore/Product"
+import { setAllProducts } from "./Explore"
+import { Order } from "./Orders/Order"
 
-export class MainExplore implements CMain {
-  readonly id: INavButtonName = "explore"
+export class MainOrders implements CMain {
+  id: INavButtonName = "orders"
   private locked: boolean = false
   private el!: HTMLElement
   main: Main
@@ -21,12 +21,12 @@ export class MainExplore implements CMain {
   private createElement(): void {
     this.el = kel("section", "sect sect-explore")
     this.el.innerHTML = `
-    <div class="sect-header">
-      <h1>${lang("nav_explore")}</h1>
-      <p>${lang("explore_desc")}</p>
-    </div>
-    <div class="sect-list">
-    </div>`
+      <div class="sect-header">
+        <h1>${lang("nav_orders")}</h1>
+        <p>${lang("orders_desc")}</p>
+      </div>
+      <div class="sect-list">
+      </div>`
   }
   private async writeData(): Promise<void> {
     const sectList = futor(".sect-list", this.el)
@@ -34,27 +34,42 @@ export class MainExplore implements CMain {
     itemLoad.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i><p>${lang("loading")}</p>`
     sectList.append(itemLoad)
 
-    const productsExists = ProductsMemory
-    if (productsExists.length >= 1) {
+    const ordersExists = OrdersMemory
+    if (!ordersExists.includes(null)) {
       this.renderData()
-      itemLoad.remove()
+      itemLoad.innerHTML = `<i class="fa-solid fa-plus"></i><p>${lang("order_add")}</p>`
       return
     }
     this.locked = true
 
-    const products = await setAllProducts()
+    const orders = await xhr.get("/x/orders/me")
 
-    if (!products.ok) {
+    if (!orders.ok) {
       itemLoad.innerHTML = `<i class="fa-solid fa-exclamation-triangle"></i><p>${lang("error")}</p>`
     }
 
-    if (!products.ok) {
-      await modal.alert(lang(products.msg) || lang("error"))
+    if (orders.code === 401) {
+      await xhr.get("/x/auth/logout")
+      window.location.href = "/portal"
+      return
+    }
+
+    if (!orders.ok) {
+      await modal.alert(lang(orders.msg) || lang("error"))
       this.locked = false
       return
     }
 
-    itemLoad.remove()
+    OrdersMemory.splice(0, OrdersMemory.length)
+
+    orders.data.forEach((order: IOrder) => {
+      OrdersMemory.push(order)
+    })
+
+    await waittime(500)
+    await setAllProducts()
+
+    itemLoad.innerHTML = `<i class="fa-solid fa-plus"></i><p>${lang("order_add")}</p>`
 
     this.renderData()
     this.locked = false
@@ -63,16 +78,24 @@ export class MainExplore implements CMain {
   private renderData(): void {
     const sectList = futor(".sect-list", this.el)
 
-    ProductsMemory.forEach((product) => {
-      const item = new Product(product, this).run()
+    OrdersMemory.filter((order) => !!order).forEach((order) => {
+      const item = new Order(order, this).run()
       sectList.append(item.html)
     })
+    this.itemAddOnclick()
   }
-  get isLocked(): boolean {
-    return this.locked
+  private itemAddOnclick(): void {
+    const itemAdd = futor(".add-item", this.el)
+    itemAdd.onclick = () => {
+      if (this.locked || this.main.king.isLocked) return
+      this.main.setNewSection("explore")
+    }
   }
   get html(): HTMLElement {
     return this.el
+  }
+  get isLocked(): boolean {
+    return this.locked
   }
   async destroy(): Promise<void> {
     if (this.locked) return
@@ -88,24 +111,4 @@ export class MainExplore implements CMain {
     this.writeData()
     return this
   }
-}
-
-export async function setAllProducts(): Promise<IResponse> {
-  const productsExists = ProductsMemory
-  if (productsExists.length < 1) {
-    const products = await xhr.get("/x/products")
-    if (products.code === 401) {
-      await xhr.get("/x/auth/logout")
-      window.location.href = "/portal"
-      return products
-    }
-    if (!products.ok) {
-      return products
-    }
-    products.data.forEach((product: IProduct) => {
-      ProductsMemory.push(product)
-    })
-    return { ok: true, code: 200, msg: "ok" }
-  }
-  return { ok: true, code: 200, msg: "ok" }
 }

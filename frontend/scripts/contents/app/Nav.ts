@@ -1,6 +1,7 @@
 import { kel } from "../../lib/kel"
 import waittime from "../../lib/waittime"
 import { type King } from "./King"
+import { lang } from "./languageApp"
 import { NavButton } from "./Nav/NavButton"
 
 export type INavButtonName = "orders" | "explore" | "account" | "tickets"
@@ -57,6 +58,8 @@ export class Nav {
   async runOpenClose(newStatus?: boolean): Promise<void> {
     const isOpen = typeof newStatus === "boolean" ? !newStatus : this.isOpen
 
+    if (newStatus === this.isOpen) return
+
     if (isOpen) {
       this.openClose.innerHTML = `<i class="fa-solid fa-bars"></i> <span class="text">Menu</span>`
       this.el.classList.remove("active")
@@ -92,6 +95,7 @@ export class Nav {
   }
   activate(name: INavButtonName): void {
     this.list.forEach((button) => button.deactivate())
+    this.king.brand.pageName = lang(`nav_${name}`)
     const button = this.list.get(name)
     if (button) button.activate()
   }

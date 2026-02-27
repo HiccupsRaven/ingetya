@@ -1,6 +1,6 @@
 import { futor, kel } from "../../../../lib/kel"
 import modal from "../../../../lib/modal"
-import { IProduct } from "../../../contentManager"
+import { IProduct, ProductsMemory } from "../../../contentManager"
 import { lang } from "../../languageApp"
 import { MainExplore } from "../Explore"
 
@@ -36,4 +36,8 @@ export class Product {
     this.onClick()
     return this
   }
+}
+
+export function getProduct(productId: string): IProduct | undefined {
+  return ProductsMemory.find((product) => product.id === productId)
 }

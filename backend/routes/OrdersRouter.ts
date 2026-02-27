@@ -2,7 +2,7 @@ import express, { Request, Response, Router } from "express"
 import { rep } from "../lib/generators"
 import {} from "../types/UserTypes"
 import { isUser } from "../main/middlewares"
-import { getUserOrders, orderNotificationHandler, orderSandBoxNotificationHandler } from "../controllers/OrderController"
+import { getUserOrders, orderNotificationHandler, orderSandBoxNotificationHandler } from "../controllers/OrdersController"
 
 const router: Router = express.Router()
 

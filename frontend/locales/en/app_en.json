@@ -10,5 +10,12 @@
   "acc_luna_settings": "Luunna Account Settings",
   "explore_desc": "Find various templates that match your feelings",
   "explore_buy": "Choose",
-  "explore_preview": "Preview"
+  "explore_preview": "Preview",
+  "order_add": "Add Order",
+  "orders_desc": "Manage all the digital invitations you've created",
+  "order_event_date": "Event",
+  "order_theme": "Template:",
+  "order_status_working": "Building",
+  "order_status_unpaid": "Unpaid",
+  "order_active_edit": "Edit Template"
 }
