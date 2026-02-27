@@ -1,0 +1,66 @@
+@use "../../../variables" as v;
+
+.app .content .main .sect.sect-account {
+  max-width: 600px;
+  .sect-form {
+    .field {
+      width: 100%;
+      margin-bottom: v.$mediumPadding;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &.lang {
+        .btn {
+          font-size: calc(v.$defaultSize * 0.8);
+          padding: v.$smallPadding;
+          border-radius: 10px;
+          border-bottom: 1px solid v.$colorBlack;
+          width: fit-content;
+          display: block;
+          margin: 0 auto;
+          text-align: center;
+          .dropdown {
+            margin-left: 10px;
+          }
+        }
+      }
+      label {
+        display: block;
+        font-weight: 600;
+      }
+      input {
+        width: 100%;
+        background: rgba(v.$colorWhite, 0.6);
+        color: v.$colorBlack;
+        display: block;
+        padding: v.$mediumPadding;
+        border-radius: 10px;
+        border: 1px solid #00000000;
+        border-color: rgba(v.$colorVariantDark, 0.3);
+        &:focus {
+          border-color: rgba(v.$colorVariantDark, 0.7);
+        }
+      }
+      &.buttons {
+        width: 100%;
+        .btn {
+          text-align: center;
+          text-decoration: none;
+          font-weight: 600;
+          display: block;
+          background: v.$colorDark;
+          padding: v.$smallPadding;
+          border-radius: v.$smallPadding;
+          margin-bottom: v.$smallPadding;
+          color: v.$colorInfoLight;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          &.btn-logout {
+            color: v.$colorDanger;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@use "../../../variables" as v;
+
+.app .brand {
+  flex-shrink: 0;
+  min-height: 0;
+  width: 100%;
+  box-shadow: v.$boxShadow;
+  padding: v.$bigPadding;
+  background: v.$colorBackground;
+  font-size: v.$dialogueSize;
+  font-weight: 600;
+  animation: appDownIn 0.3s ease-out;
+  &.out {
+    animation: appDownOut 0.3s ease-in forwards;
+  }
+}

@@ -1,0 +1,187 @@
+@use "../../../variables" as v;
+
+.app .cart {
+  z-index: 90;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(v.$colorVariantBlack, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .card {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - (v.$bigPadding * 2));
+    max-width: 690px;
+    max-height: calc(100% - (v.$bigPadding * 2));
+    padding: v.$bigPadding;
+    background-color: rgba(v.$colorBackground, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: v.$boxShadow;
+    border: 1px solid rgba(v.$colorWhite, 0.5);
+    animation: appUpIn 0.3s ease-out;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(v.$colorInfoDark, 0.5) #00000000;
+    .title {
+      padding: v.$bigPadding;
+      text-align: center;
+      margin-bottom: v.$bigPadding;
+      font-size: calc(v.$bigPadding * 1.5);
+      font-weight: 600;
+      color: v.$colorWhite;
+      text-shadow: v.$textshadow;
+      border-radius: 10px;
+      background-color: v.$colorPrimary;
+      border-bottom: 1px solid v.$colorVariantBlack;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .field {
+      margin-bottom: v.$bigPadding;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .label {
+        display: block;
+        margin-bottom: v.$tinyPadding;
+        color: v.$colorBlack;
+        font-weight: 500;
+      }
+      input {
+        width: 100%;
+        padding: v.$mediumPadding;
+        background: #000000;
+        color: v.$colorBlack;
+        background: rgba(v.$colorWhite, 0.3);
+        border: 1px solid rgba(v.$colorWhite, 0.4);
+        border-radius: 10px;
+        &:focus {
+          border-color: v.$colorBlack;
+          background: rgba(v.$colorWhite, 0.4);
+        }
+      }
+      .sm {
+        font-size: calc(v.$defaultSize * 0.8);
+        color: v.$colorBlack;
+        font-style: italic;
+        margin-top: v.$tinyPadding;
+        text-align: justify;
+        text-align-last: left;
+      }
+      &.expiry {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: v.$bigPadding;
+        .btn-expiry {
+          width: calc(100% / 2);
+          padding: v.$mediumPadding;
+          text-align: center;
+          border-radius: 10px;
+          background: rgba(v.$colorWhite, 0.3);
+          &.active {
+            background-color: v.$colorPrimary;
+            color: v.$colorWhite;
+          }
+        }
+      }
+      &.payment-methods {
+        .payment {
+          border: 1px solid rgba(v.$colorWhite, 0.4);
+          border-radius: 10px;
+          overflow: hidden;
+          background: rgba(v.$colorWhite, 0.3);
+          margin-bottom: v.$smallPadding;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          .payment-title {
+            padding: v.$bigPadding;
+            display: flex;
+            justify-content: start;
+            align-items: left;
+            gap: v.$bigPadding;
+            cursor: pointer;
+            .title-text {
+              font-weight: 700;
+            }
+          }
+          .payment-detail {
+            padding: 0;
+            max-height: 0;
+            opacity: 0;
+            transition:
+              max-height 0.5s ease-out,
+              opacity 0.3s ease-out,
+              padding 0.5s ease-out;
+            .fee {
+              margin-bottom: v.$mediumPadding;
+              font-size: calc(v.$defaultSize * 0.9);
+              color: v.$colorBlack;
+              font-style: italic;
+            }
+            .btn-buy {
+              background-color: v.$colorDark;
+              padding: v.$mediumPadding;
+              border-radius: 5px;
+              color: v.$colorWhite;
+              font-weight: 600;
+              margin-bottom: v.$mediumPadding;
+            }
+            .method-wrapper {
+              width: 100%;
+              border-radius: 5px;
+              padding: v.$mediumPadding;
+              margin-bottom: v.$mediumPadding;
+              background: rgba(v.$colorInfoLight, 0.4);
+              border: 1px solid rgba(v.$colorVariantBlack, 0.2);
+              &:last-child {
+                margin-bottom: 0;
+              }
+              .method-name {
+                font-weight: 600;
+              }
+              .method-steps {
+                width: 100%;
+                ul {
+                  margin-left: 1.65rem;
+                  li {
+                    text-align: justify;
+                    text-align-last: left;
+                  }
+                }
+              }
+            }
+          }
+
+          &.show {
+            padding: v.$mediumPadding;
+            .payment-detail {
+              max-height: 100dvh;
+              opacity: 1;
+            }
+          }
+        }
+        .btn-cancel-payment {
+          background-color: v.$colorDark;
+          color: v.$colorDanger;
+          padding: v.$mediumPadding;
+          text-align: center;
+          margin-top: v.$bigPadding;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+  &.out {
+    .card {
+      animation: appUpOut 0.3s ease-in;
+    }
+  }
+}

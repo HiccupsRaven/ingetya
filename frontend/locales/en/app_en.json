@@ -17,5 +17,14 @@
   "order_theme": "Template:",
   "order_status_working": "Building",
   "order_status_unpaid": "Unpaid",
-  "order_active_edit": "Edit Template"
+  "order_active_edit": "Edit Template",
+  "cart_order_note": "Order Note",
+  "cart_notice": "You can re-select other templates and edit all text, images, and music after the order is successfully created.",
+  "cart_cancel": "Maybe later",
+  "cart_month": "1 Month",
+  "cart_year": "12 Months",
+  "cart_fee": "Payment Method Fee",
+  "cart_total": "Total",
+  "cart_payment_text": "Payment Method",
+  "cart_checkout": "Continue with"
 }

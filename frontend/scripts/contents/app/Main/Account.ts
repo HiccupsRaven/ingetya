@@ -111,6 +111,14 @@ export class MainAccount implements CMain {
     }
   }
 
+  async handleHistory(): Promise<void> {
+    this.locked = false
+    await modal.abort()
+  }
+
+  lock(newStatus: boolean = true) {
+    this.locked = newStatus
+  }
   get isLocked(): boolean {
     return this.locked
   }
@@ -119,6 +127,7 @@ export class MainAccount implements CMain {
   }
   async destroy(): Promise<void> {
     if (this.locked) return
+    await modal.abort()
     this.locked = true
     this.el.classList.add("out")
     await waittime()

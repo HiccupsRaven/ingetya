@@ -17,5 +17,14 @@
   "order_theme": "Template:",
   "order_status_working": "Sedang Dibangun",
   "order_status_unpaid": "Menunggu Pembayaran",
-  "order_active_edit": "Edit Template"
+  "order_active_edit": "Edit Template",
+  "cart_order_note": "Catatan Pesanan",
+  "cart_notice": "Kamu bisa memilih ulang template lain beserta edit semua teks, gambar, dan musik setelah pesanan berhasil dibuat.",
+  "cart_cancel": "Ntar dulu deh",
+  "cart_month": "1 Bulan",
+  "cart_year": "12 Bulan",
+  "cart_fee": "Biaya Metode Pembayaran",
+  "cart_total": "Total",
+  "cart_payment_text": "Metode Pembayaran",
+  "cart_checkout": "Lanjut dengan"
 }

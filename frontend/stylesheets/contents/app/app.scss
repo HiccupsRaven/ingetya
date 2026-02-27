@@ -1,2 +1,10 @@
-@use "./app_wide";
-@use "./app_narrow";
+@use "./main/app_wide";
+
+@use "./classes/app_brand";
+@use "./classes/app_content";
+@use "./classes/app_content_nav";
+@use "./classes/app_content_main";
+@use "./classes/app_account";
+@use "./classes/app_cart";
+
+@use "./main/app_narrow";

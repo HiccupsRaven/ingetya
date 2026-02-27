@@ -1,0 +1,43 @@
+[
+  {
+    "id": "qris",
+    "name": "QRIS",
+    "fee": [{ "charge": 0.7, "type": "percent" }]
+  },
+  {
+    "id": "bca",
+    "name": "Bank BCA",
+    "icon": "/img/static/bca_icon.png",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  },
+  {
+    "id": "mandiri",
+    "name": "Bank Mandiri",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  },
+  {
+    "id": "bni",
+    "name": "Bank BNI",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  },
+  {
+    "id": "bri",
+    "name": "Bank BRI",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  },
+  {
+    "id": "permata",
+    "name": "Bank Permata",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  },
+  {
+    "id": "cimb",
+    "name": "Bank CIMB Niaga",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  },
+  {
+    "id": "other_va",
+    "name": "bank apa saja",
+    "fee": [{ "charge": 4000, "type": "flat" }]
+  }
+]

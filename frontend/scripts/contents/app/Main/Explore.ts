@@ -5,9 +5,10 @@ import xhr from "../../../lib/xhr"
 import { IResponse } from "../../../types/LibTypes"
 import { IProduct, ProductsMemory } from "../../contentManager"
 import { lang } from "../languageApp"
-import { Main } from "../Main"
+import { IHistoryState, Main } from "../Main"
 import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
+import { Cart } from "./Explore/Cart"
 import { Product } from "./Explore/Product"
 
 export class MainExplore implements CMain {
@@ -15,6 +16,7 @@ export class MainExplore implements CMain {
   private locked: boolean = false
   private el!: HTMLElement
   main: Main
+  cart: Cart | null = null
   constructor(main: Main) {
     this.main = main
   }
@@ -68,8 +70,24 @@ export class MainExplore implements CMain {
       sectList.append(item.html)
     })
   }
+
+  async handleHistory(state: IHistoryState): Promise<void> {
+    if (!state.subView && this.cart) {
+      this.locked = false
+      this.cart.destroy()
+      this.cart = null
+    }
+  }
+
+  setCart(newCart: Cart): void {
+    this.cart = newCart
+  }
+
   get isLocked(): boolean {
     return this.locked
+  }
+  lock(newStatus: boolean = true) {
+    this.locked = newStatus
   }
   get html(): HTMLElement {
     return this.el

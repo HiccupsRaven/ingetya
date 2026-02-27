@@ -91,6 +91,9 @@ export class MainOrders implements CMain {
       this.main.setNewSection("explore")
     }
   }
+  lock(newStatus: boolean = true) {
+    this.locked = newStatus
+  }
   get html(): HTMLElement {
     return this.el
   }
@@ -99,6 +102,7 @@ export class MainOrders implements CMain {
   }
   async destroy(): Promise<void> {
     if (this.locked) return
+    await modal.abort()
     this.locked = true
     this.el.classList.add("out")
     await waittime()
