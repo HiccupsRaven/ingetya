@@ -99,7 +99,9 @@ router.get("/:provider", (req: Request, res: Response) => {
     return res.render("404")
   }
 
-  return res.redirect(getOAuthUrl(provider as UserProvider))
+  const { locale } = req.query
+
+  return res.redirect(getOAuthUrl(provider as UserProvider, locale?.toString()))
 })
 
 export default router

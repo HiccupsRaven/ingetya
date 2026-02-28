@@ -1,4 +1,6 @@
+import { toBase64 } from "../../../lib/generators"
 import { futor, kel } from "../../../lib/kel"
+import { getLanguage } from "../../../lib/locales"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
@@ -7,6 +9,13 @@ import { changeLang, createLanguageButton, lang } from "../languageApp"
 import { Main } from "../Main"
 import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
+
+function getParsedStateLang(): string {
+  const state = {
+    lang: getLanguage()
+  }
+  return toBase64(state)
+}
 
 export class MainAccount implements CMain {
   id: INavButtonName = "account"
@@ -34,7 +43,7 @@ export class MainAccount implements CMain {
         <input type="text" name="lunaid" id="lunaid" autocomplete="off" value="Loading" readonly />
       </div>
       <div class="field buttons">
-        <a href="https://devanka.id/luunna/portal" target="_blank" class="btn btn-luna"><i class="fa-sharp fa-solid fa-gear"></i> ${lang("acc_luna_settings")}</a>
+        <a href="https://devanka.id/luunna/portal?luna=${getParsedStateLang()}" target="_blank" class="btn btn-luna"><i class="fa-sharp fa-solid fa-gear"></i> ${lang("acc_luna_settings")}</a>
         <a href="/account/logout" class="btn btn-logout"><i class="fa-sharp fa-solid fa-arrow-left-from-arc"></i> ${lang("acc_logout_btn")}</a>
       </div>
     </div>`

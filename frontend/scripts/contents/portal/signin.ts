@@ -179,7 +179,7 @@ export class LunaSignIn implements ILunaPrimary {
       const currHref = btn.getAttribute("href") as string
       const btnId = btn.getAttribute("id")!.toString().replace("-login", "")
 
-      btn.href = IN_DEVELOPMENTS.find((k) => k === btnId) ? window.location.href : `${currHref}`
+      btn.href = IN_DEVELOPMENTS.find((k) => k === btnId) ? window.location.href : `${currHref}?locale=${getLanguage()}`
 
       btn.onclick = async (e) => {
         e.preventDefault()
@@ -192,8 +192,10 @@ export class LunaSignIn implements ILunaPrimary {
           return
         }
 
+        btn.style.width = `${btn.offsetWidth}px`
         btn.innerHTML = strings.processing()
         await waittime(1000)
+        btn.removeAttribute("style")
         this.isLocked = false
         window.location.href = btn.getAttribute("href") as string
         btn.innerHTML = strings[btnId]()
