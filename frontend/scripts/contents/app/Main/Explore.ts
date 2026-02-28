@@ -72,10 +72,17 @@ export class MainExplore implements CMain {
   }
 
   async handleHistory(state: IHistoryState): Promise<void> {
-    if (!state.subView && this.cart) {
-      this.locked = false
-      this.cart.destroy()
-      this.cart = null
+    if (state.subView && state.subView === "cart") {
+      const product = state.data.product
+      if (!product.id) return
+      this.locked = true
+      const cart = new Cart(product, this)
+      cart.run()
+      this.setCart(cart)
+    }
+
+    if (this.cart) {
+      this.cart.handleHistory(state)
     }
   }
 
@@ -92,7 +99,13 @@ export class MainExplore implements CMain {
   get html(): HTMLElement {
     return this.el
   }
-  async destroy(): Promise<void> {
+  async destroy(force?: boolean): Promise<void> {
+    if (force) {
+      this.locked = false
+      modal.abort()
+      this.el.remove()
+      return
+    }
     if (this.locked) return
     this.locked = true
     this.el.classList.add("out")

@@ -26,6 +26,7 @@ export class Main {
   section!: CMain
   private el!: HTMLElement
   king: King
+  private locked: boolean = false
   constructor(king: King) {
     this.king = king
     window.onpopstate = this.handlePopState.bind(this)
@@ -46,8 +47,10 @@ export class Main {
    * @param sectionId ID dari section baru.
    * @param fromHistory `true` jika dipanggil dari popstate biar ga looping.
    */
-  async setNewSection(sectionId: INavButtonName, fromHistory: boolean = false): Promise<void> {
+  async setNewSection(sectionId: INavButtonName, fromHistory: boolean = false, force?: boolean): Promise<void> {
+    if (this.locked) return
     if (this.section.id === sectionId) return
+    this.locked = true
 
     if (!fromHistory) {
       const currentState: IHistoryState | null = history.state
@@ -69,7 +72,8 @@ export class Main {
 
     this.king.nav.runOpenClose(false)
     this.king.nav.activate(sectionId)
-    await this.section.destroy()
+    await this.section.destroy(force)
+    this.locked = false
 
     this.section = CMainClass[sectionId](this).run()
     this.el.append(this.section.html)
@@ -85,12 +89,12 @@ export class Main {
     this.section.lock(false)
 
     if (!state) {
-      await this.setNewSection("orders", true)
+      await this.setNewSection("orders", true, true)
       return
     }
 
     if (this.section.id !== state.sectionId) {
-      await this.setNewSection(state.sectionId, true)
+      await this.setNewSection(state.sectionId, true, true)
     }
 
     await this.section.handleHistory?.(state)
@@ -103,7 +107,7 @@ export class Main {
     return this.el
   }
   get isLocked(): boolean {
-    return this.section.isLocked
+    return this.section.isLocked || this.locked
   }
   async destroy(): Promise<void> {
     await this.section.destroy()

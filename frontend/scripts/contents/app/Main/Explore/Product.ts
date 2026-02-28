@@ -33,7 +33,7 @@ export class Product {
       this.explore.lock(true)
       const cart = new Cart(this.product, this.explore)
       cart.run()
-      this.explore.main.addHistory({ sectionId: "explore", subView: "cart", data: { productId: this.product.id } })
+      this.explore.main.addHistory({ sectionId: "explore", subView: "cart", data: { product: this.product } })
       this.explore.setCart(cart)
     }
   }

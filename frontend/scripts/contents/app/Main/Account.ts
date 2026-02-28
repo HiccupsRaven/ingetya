@@ -125,7 +125,13 @@ export class MainAccount implements CMain {
   get html(): HTMLElement {
     return this.el
   }
-  async destroy(): Promise<void> {
+  async destroy(force?: boolean): Promise<void> {
+    if (force) {
+      this.locked = false
+      modal.abort()
+      this.el.remove()
+      return
+    }
     if (this.locked) return
     await modal.abort()
     this.locked = true

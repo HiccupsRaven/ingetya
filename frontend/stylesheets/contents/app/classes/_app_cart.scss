@@ -75,19 +75,42 @@
         text-align-last: left;
       }
       &.expiry {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: v.$bigPadding;
-        .btn-expiry {
-          width: calc(100% / 2);
-          padding: v.$mediumPadding;
-          text-align: center;
-          border-radius: 10px;
-          background: rgba(v.$colorWhite, 0.3);
-          &.active {
-            background-color: v.$colorPrimary;
-            color: v.$colorWhite;
+        width: 100%;
+        .expiry-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: v.$bigPadding;
+          .btn-expiry {
+            width: calc(100% / 2);
+            padding: v.$mediumPadding;
+            text-align: center;
+            border-radius: 10px;
+            background-color: rgba(v.$colorWhite, 0.3);
+            &.active {
+              background-color: v.$colorDark;
+              color: v.$colorWhite;
+            }
+          }
+        }
+      }
+      &.add-on {
+        width: 100%;
+        .addon-wrapper {
+          width: 100%;
+          .btn-addon-item {
+            width: 100%;
+            padding: v.$mediumPadding;
+            border-radius: 10px;
+            background-color: rgba(v.$colorWhite, 0.3);
+            &.active {
+              background-color: v.$colorDark;
+              color: v.$colorWhite;
+              .sm {
+                color: v.$colorWhite;
+              }
+            }
           }
         }
       }
@@ -111,15 +134,19 @@
             .title-text {
               font-weight: 700;
             }
+            .arrow-openclose {
+              rotate: 0;
+              transition: rotate 0.3s;
+            }
           }
           .payment-detail {
             padding: 0;
             max-height: 0;
             opacity: 0;
             transition:
-              max-height 0.5s ease-out,
-              opacity 0.3s ease-out,
-              padding 0.5s ease-out;
+              padding 0.5s ease,
+              opacity 0.3s ease,
+              max-height 0.5s ease-in-out;
             .fee {
               margin-bottom: v.$mediumPadding;
               font-size: calc(v.$defaultSize * 0.9);
@@ -161,19 +188,25 @@
           }
 
           &.show {
-            padding: v.$mediumPadding;
+            .payment-title {
+              .arrow-openclose {
+                rotate: 90deg;
+              }
+            }
             .payment-detail {
-              max-height: 100dvh;
+              padding: v.$mediumPadding;
+              max-height: 3000px;
               opacity: 1;
             }
           }
         }
+      }
+      &.cancel-payment {
         .btn-cancel-payment {
           background-color: v.$colorDark;
           color: v.$colorDanger;
           padding: v.$mediumPadding;
           text-align: center;
-          margin-top: v.$bigPadding;
           border-radius: 10px;
         }
       }

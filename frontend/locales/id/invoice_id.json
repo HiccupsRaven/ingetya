@@ -106,7 +106,7 @@
     "id": "other_va",
     "howto": [
       {
-        "name": "Other Banks",
+        "name": "Transfer Bank",
         "steps": ["Pilih transaksi lainnya pada menu utama.", "Pilih transfer.", "Pilih antar bank/rekening bank lain.", "Masukkan 009 sebagai kode bank.", "Masukkan jumlah yang akan dibayar.", "Masukkan nomor rekening pembayaran, lalu konfirmasi.", "Pembayaran berhasil."]
       }
     ]

@@ -16,7 +16,7 @@ export interface IPaymentFee {
 export interface IPaymentMethodInfo {
   id: string
   name: string
-  fee: IPaymentFee[]
+  fee: IPaymentFee
   howto: Record<ILanguage, IPaymentStep[]>
 }
 
@@ -24,7 +24,7 @@ const locales: IPaymentMethodInfo[] = paymentMethods.map((method) => {
   return {
     id: method.id,
     name: method.name,
-    fee: method.fee as IPaymentFee[],
+    fee: method.fee as IPaymentFee,
     howto: {
       id: lang_id.find((l) => l.id === method.id)?.howto || [],
       en: lang_en.find((l) => l.id === method.id)?.howto || []

@@ -17,9 +17,9 @@ export class King {
     this.main = new Main(this).run()
   }
   async refresh(): Promise<void> {
-    this.main.destroy()
-    this.nav.destroy()
-    await this.brand.destroy()
+    await this.main.destroy()
+    this.brand.destroy()
+    await this.nav.destroy()
 
     this.run()
   }

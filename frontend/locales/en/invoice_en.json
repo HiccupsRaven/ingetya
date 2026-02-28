@@ -106,7 +106,7 @@
     "id": "other_va",
     "howto": [
       {
-        "name": "Other Banks",
+        "name": "Bank Transfer",
         "steps": ["Select other transactions on the main menu.", "Select transfer.", "Select between banks/other bank accounts.", "Enter 009 as the bank code.", "Enter the amount to be paid.", "Enter the payment account number, then confirm.", "Payment successful."]
       }
     ]

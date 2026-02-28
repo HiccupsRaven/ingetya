@@ -1,6 +1,7 @@
 {
   "loading": "Loading",
   "error": "Something Went Wrong",
+  "optional": "optional",
   "nav_orders": "Orders",
   "nav_explore": "Explore Templates",
   "nav_account": "Account Settings",
@@ -21,9 +22,14 @@
   "cart_order_note": "Order Note",
   "cart_notice": "You can re-select other templates and edit all text, images, and music after the order is successfully created.",
   "cart_cancel": "Maybe later",
+  "cart_package": "Package",
+  "cart_package_durr": "Active For",
   "cart_month": "1 Month",
   "cart_year": "12 Months",
-  "cart_fee": "Payment Method Fee",
+  "cart_addon": "Add-on",
+  "cart_guestbook": "Guest Book",
+  "cart_guestbook_note": "Provide guests with a unique QR Code that can be scanned upon arrival to confirm attendance.",
+  "cart_fee": "Service Fee",
   "cart_total": "Total",
   "cart_payment_text": "Payment Method",
   "cart_checkout": "Continue with"

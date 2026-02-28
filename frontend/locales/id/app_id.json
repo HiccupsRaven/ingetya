@@ -1,6 +1,7 @@
 {
   "loading": "Memuat",
   "error": "Terjadi Kesalahan",
+  "optional": "opsional",
   "nav_orders": "Pesanan",
   "nav_explore": "Eksplor Template",
   "nav_account": "Pengaturan Akun",
@@ -21,9 +22,14 @@
   "cart_order_note": "Catatan Pesanan",
   "cart_notice": "Kamu bisa memilih ulang template lain beserta edit semua teks, gambar, dan musik setelah pesanan berhasil dibuat.",
   "cart_cancel": "Ntar dulu deh",
+  "cart_package": "Paket",
+  "cart_package_durr": "Aktif Selama",
   "cart_month": "1 Bulan",
   "cart_year": "12 Bulan",
-  "cart_fee": "Biaya Metode Pembayaran",
+  "cart_addon": "Tambahan",
+  "cart_guestbook": "Buku Tamu",
+  "cart_guestbook_note": "Berikan tamu Kode QR unik yang dapat discan saat hadir ke acara untuk mengonfirmasi kehadiran.",
+  "cart_fee": "Biaya Layanan",
   "cart_total": "Total",
   "cart_payment_text": "Metode Pembayaran",
   "cart_checkout": "Lanjut dengan"

@@ -100,8 +100,13 @@ export class MainOrders implements CMain {
   get isLocked(): boolean {
     return this.locked
   }
-  async destroy(): Promise<void> {
-    if (this.locked) return
+  async destroy(force?: boolean): Promise<void> {
+    if (force) {
+      this.locked = false
+      modal.abort()
+      this.el.remove()
+      return
+    }
     await modal.abort()
     this.locked = true
     this.el.classList.add("out")

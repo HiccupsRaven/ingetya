@@ -7,7 +7,7 @@ export interface CMain {
   readonly id: INavButtonName
   html: HTMLElement
   lock(lockStatus: boolean): void
-  destroy(): IAny
+  destroy(force?: boolean): IAny
   run(): IAny
   handleHistory?(state: IHistoryState): Promise<void>
 }
