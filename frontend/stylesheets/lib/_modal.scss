@@ -5,15 +5,6 @@ $fontAction: calc(v.$defaultSize);
 $fontProviderIcon: calc(v.$defaultSize * 1.1);
 $fontFooter: calc(v.$defaultSize * 0.7);
 
-$bgColor: rgba(v.$colorVariantBlack, 0.75);
-$textColor: #f0f2f3;
-$bgCardPrimary: #1c222c;
-$bgCardSecondary: #0b111d;
-$colorPrimary: #a395e8;
-$shadowCard: $colorPrimary;
-$icColor: $colorPrimary;
-$anchorColor: $colorPrimary;
-
 .modal {
   z-index: 98;
   position: fixed;
@@ -21,11 +12,11 @@ $anchorColor: $colorPrimary;
   left: 0;
   width: 100%;
   height: 100%;
-  background: $bgColor;
+  background-color: rgba($color: v.$black, $alpha: 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $textColor;
+  color: v.$white;
   .box {
     text-align: center;
     padding: 20px;
@@ -35,13 +26,13 @@ $anchorColor: $colorPrimary;
     scrollbar-width: thin;
     overflow-y: auto;
     scrollbar-width: thin;
-    background: $bgCardPrimary;
+    background-color: v.$px2;
     border-radius: 10px;
     animation: modal_in 0.3s;
-    box-shadow: -3px 3px 5px $colorPrimary;
+    box-shadow: -3px 3px 5px v.$pm1;
     .ic {
       font-size: 2.2em;
-      color: $colorPrimary;
+      color: v.$pm1;
     }
     .inf {
       margin: 20px 0;
@@ -56,7 +47,7 @@ $anchorColor: $colorPrimary;
         }
       }
       a {
-        color: $colorPrimary;
+        color: v.$pm1;
         text-decoration: none;
       }
       p,
@@ -74,12 +65,11 @@ $anchorColor: $colorPrimary;
       }
       input[type="text"],
       textarea {
-        color: $textColor;
         margin-top: 10px;
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        background: $bgCardSecondary;
+        background-color: v.$black;
         font-size: v.$dialogueSize;
       }
       textarea {
@@ -94,7 +84,7 @@ $anchorColor: $colorPrimary;
         .radio {
           width: 100%;
           border-radius: 10px;
-          border: 1px solid $colorPrimary;
+          border: 1px solid v.$pm1;
           margin-bottom: 10px;
           label {
             padding: 14px;
@@ -107,10 +97,10 @@ $anchorColor: $colorPrimary;
             input[type="radio"] {
               -webkit-appearance: none;
               appearance: none;
-              background: $bgCardSecondary;
+              background-color: v.$px1;
               margin: 0;
               font: inherit;
-              color: $colorPrimary;
+              color: v.$pm1;
               width: 1.15em;
               height: 1.15em;
               border-radius: 50%;
@@ -125,11 +115,11 @@ $anchorColor: $colorPrimary;
               border-radius: 50%;
               transform: scale(0);
               transition: 120ms transform ease-in-out;
-              box-shadow: inset 1em 1em $bgCardSecondary;
-              background-color: $colorPrimary;
+              box-shadow: inset 1em 1em v.$px2;
+              background-color: v.$pm1;
             }
             input[type="radio"]:checked {
-              background-color: $colorPrimary;
+              background-color: v.$pm1;
               transform: scale(1);
             }
             input[type="radio"]:checked::before {
@@ -142,8 +132,8 @@ $anchorColor: $colorPrimary;
         }
       }
       .radio:has(:checked) {
-        border-color: $colorPrimary;
-        background-color: rgba($colorPrimary, 0.2);
+        border-color: v.$pm1;
+        background-color: rgba($color: v.$pm1, $alpha: 0.2);
       }
     }
     .acts {
@@ -158,13 +148,13 @@ $anchorColor: $colorPrimary;
         padding: 10px;
         border-radius: 5px;
         font-size: v.$defaultSize;
-        color: $textColor;
+        color: v.$white;
         &.btn-cancel {
-          background: $bgCardSecondary;
+          background-color: v.$px1;
         }
         &.btn-ok {
-          background: $colorPrimary;
-          color: $bgCardSecondary;
+          background-color: v.$pm1;
+          color: v.$px1;
         }
       }
 
@@ -172,8 +162,8 @@ $anchorColor: $colorPrimary;
         justify-content: center;
         .btn {
           width: 100%;
-          background: $colorPrimary;
-          color: $bgCardSecondary;
+          background-color: v.$pm1;
+          color: v.$px1;
         }
       }
     }
@@ -192,8 +182,8 @@ $anchorColor: $colorPrimary;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $bgColor;
-  color: $bgCardSecondary;
+  background-color: rgba($color: v.$black, $alpha: 0.75);
+  color: v.$px1;
   .box {
     width: fit-content;
     max-width: calc(100% - 40px);
@@ -202,7 +192,7 @@ $anchorColor: $colorPrimary;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: $colorPrimary;
+    background-color: v.$pm1;
     padding: 30px 40px;
     border-radius: 20px;
     animation: appDownIn 0.3s ease-out;

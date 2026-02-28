@@ -23,10 +23,6 @@ body {
   overflow: hidden;
 }
 
-::selection {
-  background: v.$colorDark;
-  color: v.$colorWhite;
-}
 .hr {
   position: relative;
   width: 100%;

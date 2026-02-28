@@ -21,8 +21,7 @@
         transform: translateX(-50%);
         border-radius: 10px;
         text-align: center;
-        border: 1px solid rgba(v.$colorInfoDark, 0.3);
-        box-shadow: -1px 2px 18px rgba(v.$colorInfoDark, 0.5);
+        background-color: v.$px2;
         animation: navUpIn 0.3s ease-out;
         &.out {
           animation: navUpOut 0.3s ease-in forwards;
@@ -31,9 +30,8 @@
           display: none;
           .nav-link {
             padding: v.$mediumPadding;
-            border-top: solid 1px rgba(v.$colorVariantDark, 0.18);
             &:first-child {
-              border-bottom: none;
+              border-top: none;
             }
             .link-text {
               padding: v.$bigPadding;
@@ -45,11 +43,15 @@
         }
         .nav-action {
           display: block;
+          border-top: solid 1px #00000000;
         }
         &.active {
           .nav-links {
             display: block;
             animation: navLinksIn 0.4s ease-in-out;
+          }
+          .nav-action {
+            border-color: rgba(v.$softwhite, 0.18);
           }
         }
         &.link-out {

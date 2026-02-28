@@ -7,27 +7,23 @@
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(v.$colorInfoDark, 0.5) v.$colorBackground;
+  scrollbar-color: v.$scrollbarcolor;
   .sect {
     max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    // display: none;
+    margin: 0 auto;
+    padding: 20px;
     animation: appUpIn 0.3s ease-out;
     &.active {
       display: block;
-      // animation: appUpIn 0.3s ease-out;
     }
     .sect-header {
       margin-bottom: 30px;
       h1 {
         font-size: 32px;
         font-weight: 600;
-        color: v.$colorBlack;
         margin-bottom: 10px;
         p {
           font-size: 16px;
-          color: v.$colorBlack;
         }
       }
     }
@@ -42,13 +38,11 @@
         border-radius: 15px;
         overflow: hidden;
         position: relative;
-        box-shadow: v.$boxShadow;
         cursor: pointer;
         transition: all 0.3s ease;
-        background: v.$colorWhite;
+        background-color: v.$px2;
         &:hover {
           transform: translateY(-5px);
-          box-shadow: v.$boxShadow;
         }
         img {
           width: 100%;
@@ -61,8 +55,8 @@
           left: 0;
           z-index: 1;
           padding: v.$tinyPadding;
-          color: v.$colorWhite;
-          background: rgba(v.$colorVariantBlack, 0.5);
+          color: v.$white;
+          background-color: rgba(v.$px1, 0.5);
           border-bottom-right-radius: v.$tinyPadding;
         }
         .item-overlay {
@@ -70,9 +64,9 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: linear-gradient(to top, rgba(v.$colorBlack, 0.8), transparent);
+          background: linear-gradient(to top, rgba(v.$px1, 0.8), transparent);
           padding: v.$bigPadding;
-          color: v.$colorWhite;
+          color: v.$white;
           h3 {
             word-break: break-all;
             word-wrap: break-word;
@@ -89,19 +83,19 @@
             &.unpaid {
               text-shadow: v.$textoutline;
               font-weight: 600;
-              color: v.$colorDanger;
+              color: v.$cred;
             }
             &.working {
               text-shadow: v.$textoutline;
               font-weight: 600;
-              color: v.$colorWarning;
+              color: v.$syellow;
             }
             &.active {
               width: fit-content;
               padding: v.$mediumPadding;
               border-radius: 10px;
-              background: rgba(v.$colorPrimary, 0.7);
-              color: v.$colorWhite;
+              background-color: rgba(v.$pm2, 0.7);
+              color: v.$white;
             }
           }
           .item-actions {
@@ -113,15 +107,14 @@
               border-radius: 10px;
               width: calc(100% / 2);
               padding: v.$mediumPadding;
-              background: rgba(v.$colorVariantBlack, 0.5);
-              color: v.$colorWhite;
-              border: 1px solid rgba(v.$colorWhite, 0.2);
+              background-color: rgba(v.$px1, 0.5);
+              color: v.$white;
+              border: 1px solid rgba(v.$px1, 0.2);
               text-align: center;
               display: block;
               text-decoration: none;
               &:hover {
-                background: rgba(v.$colorPrimary, 0.7);
-                color: v.$colorWhite;
+                background-color: rgba(v.$pm1, 0.7);
               }
             }
           }
@@ -130,9 +123,9 @@
 
       .add-item {
         height: 250px;
-        border: 2px dashed rgba(v.$colorPrimary, 0.5);
+        border: 2px dashed rgba(v.$pm1, 0.5);
         border-radius: 15px;
-        background: rgba(v.$colorWhite, 0.7);
+        background-color: rgba(v.$px2, 0.7);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -140,19 +133,19 @@
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
-          background: rgba(v.$colorWhite, 0.9);
-          border-color: v.$colorPrimary;
+          background-color: rgba(v.$px2, 0.9);
+          border-color: v.$pm1;
           transform: translateY(-5px);
         }
         i {
           font-size: 48px;
-          color: v.$colorPrimary;
+          color: v.$pm1;
           margin-bottom: 15px;
         }
         p {
           font-size: 16px;
           font-weight: 500;
-          color: v.$colorBlack;
+          color: v.$white;
         }
       }
     }

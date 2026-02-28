@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(v.$colorVariantBlack, 0.75);
+  background-color: rgba(v.$px1, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,26 +18,23 @@
     max-width: 690px;
     max-height: calc(100% - (v.$bigPadding * 2));
     padding: v.$bigPadding;
-    background-color: rgba(v.$colorBackground, 0.5);
+    background-color: v.$pm2;
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: v.$boxShadow;
-    border: 1px solid rgba(v.$colorWhite, 0.5);
     animation: appUpIn 0.3s ease-out;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(v.$colorInfoDark, 0.5) #00000000;
+    scrollbar-color: v.$scrollbarcolor;
     .title {
       padding: v.$bigPadding;
       text-align: center;
       margin-bottom: v.$bigPadding;
       font-size: calc(v.$bigPadding * 1.5);
       font-weight: 600;
-      color: v.$colorWhite;
       text-shadow: v.$textshadow;
       border-radius: 10px;
-      background-color: v.$colorPrimary;
-      border-bottom: 1px solid v.$colorVariantBlack;
+      background-color: v.$px2;
+      border-bottom: 1px solid v.$pm1;
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -50,25 +47,21 @@
       .label {
         display: block;
         margin-bottom: v.$tinyPadding;
-        color: v.$colorBlack;
         font-weight: 500;
       }
       input {
         width: 100%;
         padding: v.$mediumPadding;
-        background: #000000;
-        color: v.$colorBlack;
-        background: rgba(v.$colorWhite, 0.3);
-        border: 1px solid rgba(v.$colorWhite, 0.4);
+        background-color: rgba(v.$px1, 0.6);
+        color: v.$white;
+        border: 1px solid v.$black;
         border-radius: 10px;
         &:focus {
-          border-color: v.$colorBlack;
-          background: rgba(v.$colorWhite, 0.4);
+          border-color: v.$pm1;
         }
       }
       .sm {
         font-size: calc(v.$defaultSize * 0.8);
-        color: v.$colorBlack;
         font-style: italic;
         margin-top: v.$tinyPadding;
         text-align: justify;
@@ -87,10 +80,10 @@
             padding: v.$mediumPadding;
             text-align: center;
             border-radius: 10px;
-            background-color: rgba(v.$colorWhite, 0.3);
+            background-color: rgba(v.$px1, 0.6);
             &.active {
-              background-color: v.$colorDark;
-              color: v.$colorWhite;
+              background-color: v.$pm1;
+              color: v.$px1;
             }
           }
         }
@@ -103,12 +96,12 @@
             width: 100%;
             padding: v.$mediumPadding;
             border-radius: 10px;
-            background-color: rgba(v.$colorWhite, 0.3);
+            background-color: rgba(v.$px1, 0.6);
             &.active {
-              background-color: v.$colorDark;
-              color: v.$colorWhite;
+              background-color: v.$pm1;
+              color: v.$px1;
               .sm {
-                color: v.$colorWhite;
+                color: v.$px1;
               }
             }
           }
@@ -116,10 +109,10 @@
       }
       &.payment-methods {
         .payment {
-          border: 1px solid rgba(v.$colorWhite, 0.4);
+          border: 1px solid v.$black;
           border-radius: 10px;
           overflow: hidden;
-          background: rgba(v.$colorWhite, 0.3);
+          background-color: rgba($color: v.$px1, $alpha: 0.6);
           margin-bottom: v.$smallPadding;
           &:last-child {
             margin-bottom: 0;
@@ -150,14 +143,13 @@
             .fee {
               margin-bottom: v.$mediumPadding;
               font-size: calc(v.$defaultSize * 0.9);
-              color: v.$colorBlack;
               font-style: italic;
             }
             .btn-buy {
-              background-color: v.$colorDark;
+              background-color: v.$pm2;
               padding: v.$mediumPadding;
               border-radius: 5px;
-              color: v.$colorWhite;
+              color: v.$white;
               font-weight: 600;
               margin-bottom: v.$mediumPadding;
             }
@@ -166,8 +158,8 @@
               border-radius: 5px;
               padding: v.$mediumPadding;
               margin-bottom: v.$mediumPadding;
-              background: rgba(v.$colorInfoLight, 0.4);
-              border: 1px solid rgba(v.$colorVariantBlack, 0.2);
+              background-color: v.$px2;
+              border: 1px solid v.$black;
               &:last-child {
                 margin-bottom: 0;
               }
@@ -186,7 +178,6 @@
               }
             }
           }
-
           &.show {
             .payment-title {
               .arrow-openclose {
@@ -203,8 +194,8 @@
       }
       &.cancel-payment {
         .btn-cancel-payment {
-          background-color: v.$colorDark;
-          color: v.$colorDanger;
+          background-color: v.$px1;
+          color: v.$cred;
           padding: v.$mediumPadding;
           text-align: center;
           border-radius: 10px;

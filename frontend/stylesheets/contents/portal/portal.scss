@@ -11,30 +11,6 @@ body {
   font-family: v.$systemfont;
   min-height: 100dvh;
   position: relative;
-  background: v.$colorBackground;
-  color: v.$colorBlack;
-}
-
-button,
-input,
-textarea,
-select,
-.btn {
-  outline: none;
-  border: none;
-  font-family: v.$systemfont;
-  font-size: $fontNormal;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
-::selection {
-  background: v.$colorBlack;
-  color: v.$colorWhite;
 }
 
 .hr {
@@ -60,7 +36,7 @@ select,
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: rgba(v.$colorPrimary, 0.2);
+    background-color: rgba(v.$pm1, 0.2);
     top: -100px;
     right: -100px;
   }
@@ -70,7 +46,7 @@ select,
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    background: rgba(v.$colorPrimary, 0.2);
+    background-color: rgba(v.$pm1, 0.2);
     bottom: -150px;
     left: -150px;
   }
@@ -83,16 +59,14 @@ select,
   max-width: 420px;
   max-height: calc(100% - (v.$bigPadding * 2));
   padding: v.$bigPadding;
-  background: rgba(v.$colorBackground, 0.5);
+  background-color: rgba(v.$px2, 0.9);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  box-shadow: v.$boxShadow;
-  border: 1px solid rgba(v.$colorWhite, 0.5);
+  border: 1px solid rgba(v.$pm1, 0.5);
   animation: appUpIn 0.3s ease-out;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(v.$colorInfoDark, 0.5) #00000000;
-
+  scrollbar-color: v.$scrollbarcolor;
   .title {
     text-align: center;
     margin-bottom: v.$smallPadding;
@@ -107,7 +81,7 @@ select,
     h1 {
       font-size: v.$dialogueSize;
       font-weight: 600;
-      color: v.$colorBlack;
+      color: v.$softwhite;
       margin-bottom: v.$tinyPadding;
     }
   }
@@ -122,7 +96,7 @@ select,
     }
     p {
       font-size: $fontNormal;
-      color: v.$colorBlack;
+      color: v.$softwhite;
       font-weight: 400;
       line-height: 1.5;
     }
@@ -135,7 +109,7 @@ select,
       font-size: calc(v.$defaultSize * 0.8);
       padding: v.$smallPadding;
       border-radius: 10px;
-      border-bottom: 1px solid v.$colorBlack;
+      border-bottom: 1px solid v.$softwhite;
       width: fit-content;
       display: block;
       margin: 0 auto;
@@ -158,7 +132,7 @@ select,
           display: block;
           margin-bottom: v.$tinyPadding;
           font-size: $fontNormal;
-          color: v.$colorBlack;
+          color: v.$softwhite;
           font-weight: 500;
         }
 
@@ -168,51 +142,46 @@ select,
           justify-content: left;
           align-items: center;
           gap: 0;
-          background: rgba(v.$colorWhite, 0.6);
-          border: 1px solid rgba(v.$colorWhite, 0.5);
+          background-color: v.$px1;
+          border: 1px solid v.$black;
           border-radius: 10px;
           overflow: hidden;
           &:has(:focus) {
-            border-color: v.$colorBlack;
-            background: rgba(v.$colorWhite, 0.8);
+            border-color: v.$pm1;
           }
           i,
           img {
             flex-shrink: 0;
-            color: v.$colorBlack;
+            color: v.$softwhite;
             margin-left: 10px;
           }
           img {
             max-width: 24px;
           }
-          .btn-unlink {
-            flex-shrink: 0;
-            font-size: calc(v.$defaultSize * 0.8);
-            font-weight: 500;
-            // padding: 2px 10px;
-            // background-color: v.$colorVariantBlack;
-            color: v.$colorDanger;
-            // border-radius: 5px;
-            margin-right: 10px;
-          }
-
           input {
             width: fit-content;
             min-width: 0;
             flex-grow: 1;
             padding: 10px;
-            background: #00000000;
+            background-color: v.$px1;
+            color: v.$white;
             font-size: $fontNormal;
-            color: v.$colorBlack;
             transition: all 0.3s ease;
             &.otp {
               letter-spacing: 5px;
             }
           }
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 1000px v.$px1 inset !important;
+            -webkit-text-fill-color: v.$white !important;
+            transition: none;
+          }
         }
         .ft-sm {
           font-size: $fontFooter;
-          color: v.$colorBlack;
+          color: v.$softwhite;
           font-style: italic;
           margin-top: v.$tinyPadding;
           text-align: justify;
@@ -223,15 +192,14 @@ select,
         }
       }
     }
-
     .button-group {
       width: 100%;
       .btn {
-        background: v.$colorVariantBlack;
-        color: v.$colorWhite;
+        background-color: v.$pm1;
+        border: 1px solid v.$pm1;
+        color: v.$px1;
         width: 100%;
         padding: 12px;
-        border: none;
         border-radius: 10px;
         font-size: $fontAction;
         font-weight: 500;
@@ -239,13 +207,11 @@ select,
         transition: all 0.3s ease;
         margin-bottom: v.$smallPadding;
         text-align: center;
-        &.btn-restart {
-          background-color: v.$colorPrimary;
-          margin-bottom: 0;
-        }
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: v.$boxShadow;
+          border-color: v.$pm1;
+          background-color: v.$pm2;
+          color: v.$white;
+          transform: translateY(-1px);
         }
       }
     }
@@ -260,12 +226,12 @@ select,
       content: "";
       flex: 1;
       height: 1px;
-      background: rgba(v.$colorBlack, 0.2);
+      background-color: rgba(v.$white, 0.2);
     }
     span {
       padding: 0 15px;
       font-size: $fontNormal;
-      color: v.$colorBlack;
+      color: v.$softwhite;
     }
   }
 
@@ -277,9 +243,9 @@ select,
     gap: 15px;
     .btn {
       padding: 10px;
-      border: 1px solid rgba(v.$colorWhite, 0.7);
+      border: 1px solid rgba(v.$px1, 0.7);
       border-radius: 10px;
-      background: rgba(v.$colorWhite, 0.8);
+      background-color: rgba(v.$px1, 0.8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -287,16 +253,13 @@ select,
       cursor: pointer;
       transition: all 0.3s ease;
       font-size: $fontNormal;
-      color: v.$colorBlack;
       text-decoration: none;
+      color: v.$softwhite;
       &:hover {
-        background: v.$colorWhite;
         transform: translateY(-1px);
-        box-shadow: v.$boxShadow;
       }
       i {
         font-size: $fontProviderIcon;
-        color: v.$colorBlack;
       }
       .provider-icon {
         display: block;
@@ -310,11 +273,8 @@ select,
     text-align-last: center;
     margin-top: v.$bigPadding;
     font-size: $fontFooter;
-    color: v.$colorBlack;
-
     a {
-      color: v.$colorAnchorDark;
-      text-shadow: 0 0 3px v.$colorWhite;
+      color: v.$pm1;
       font-weight: 600;
       text-decoration: none;
       &:hover {

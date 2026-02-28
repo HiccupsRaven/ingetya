@@ -31,7 +31,7 @@ $providerText: #333333;
 $footerText: #666666;
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: v.$systemfont;
   min-height: 100vh;
   display: flex;
   justify-content: center;
