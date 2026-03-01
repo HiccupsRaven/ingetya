@@ -20,3 +20,8 @@ export function toBase64(query: IAny): string {
     return data
   }
 }
+
+export function toMoneyFormat(amount: string | number): string {
+  const cost = typeof amount === "string" ? amount : amount.toString()
+  return cost.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+}

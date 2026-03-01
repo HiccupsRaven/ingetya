@@ -6,12 +6,10 @@
   box-sizing: border-box;
 }
 html {
-  font-size: 16.2px;
-  // height: 100svh;
+  font-size: 16px;
   scroll-behavior: smooth;
-  // scrollbar-color: v.$pm1 rgba(v.$px1, 0.5);
   scrollbar-width: thin;
-  scrollbar-color: rgba(v.$colorInfoDark, 0.5) v.$colorBackground;
+  scrollbar-color: v.$scrollbarcolor;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -25,9 +23,14 @@ body {
   width: 100%;
   min-height: 100dvh;
   overflow: hidden;
-  background: v.$colorBackground;
-  color: v.$colorBlack;
+  background-color: v.$px1;
+  color: v.$softwhite;
   font-size: v.$defaultSize;
+}
+
+::selection {
+  background-color: v.$pm1;
+  color: v.$px1;
 }
 
 .app {
@@ -38,6 +41,7 @@ body {
 button,
 input,
 textarea {
+  color: v.$white;
   font-family: v.$systemfont;
   border: none;
   outline: none;
@@ -54,9 +58,7 @@ textarea {
   resize: none;
   scrollbar-width: thin;
 }
-textarea {
-  resize: none;
-}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

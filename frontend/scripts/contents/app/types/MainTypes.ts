@@ -1,10 +1,13 @@
 import { IAny } from "../../../types/LibTypes"
-import { CMainKey } from "../Main"
+import { IHistoryState } from "../Main"
+import { INavButtonName } from "../Nav"
 
 export interface CMain {
   isLocked: boolean
-  readonly id: CMainKey
+  readonly id: INavButtonName
   html: HTMLElement
-  destroy(): IAny
+  lock(lockStatus: boolean): void
+  destroy(force?: boolean): IAny
   run(): IAny
+  handleHistory?(state: IHistoryState): Promise<void>
 }

@@ -18,7 +18,7 @@ export function rep(options: IResTemp): IResponse {
     {
       ok: false,
       code: 400,
-      msg: "Terjadi Kesalahan - 400"
+      msg: "error"
     },
     typeof options === "string" ? {} : options
   )

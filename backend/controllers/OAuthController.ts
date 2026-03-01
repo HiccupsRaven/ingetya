@@ -30,11 +30,12 @@ export function isProviderValid(provider: string, useIngetYa?: boolean): boolean
   return false
 }
 
-export function getOAuthUrl(provider: UserProvider) {
+export function getOAuthUrl(provider: UserProvider, locale?: string) {
   const HOST = isProd ? "https://ingetya.net" : "http://localhost:9001"
 
   const stateData = {
-    client: `${HOST}/x/auth/luunna/redirect`
+    client: `${HOST}/x/auth/luunna/redirect`,
+    lang: typeof locale === "string" && locale === "en" ? "en" : "id"
   }
 
   const state = toBase64(stateData)

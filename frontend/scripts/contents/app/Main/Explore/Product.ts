@@ -1,8 +1,8 @@
 import { futor, kel } from "../../../../lib/kel"
-import modal from "../../../../lib/modal"
-import { IProduct } from "../../../contentManager"
+import { IProduct, ProductsMemory } from "../../../contentManager"
 import { lang } from "../../languageApp"
 import { MainExplore } from "../Explore"
+import { Cart } from "./Cart"
 
 export class Product {
   private product: IProduct
@@ -29,11 +29,21 @@ export class Product {
   }
   private onClick(): void {
     const btnBuy = futor(".btn-buy", this.el)
-    btnBuy.onclick = () => modal.alert("coming soon")
+    btnBuy.onclick = () => {
+      this.explore.lock(true)
+      const cart = new Cart(this.product, this.explore)
+      cart.run()
+      this.explore.main.addHistory({ sectionId: "explore", subView: "cart", data: { product: this.product } })
+      this.explore.setCart(cart)
+    }
   }
   run(): this {
     this.createElement()
     this.onClick()
     return this
   }
+}
+
+export function getProduct(productId: string): IProduct | undefined {
+  return ProductsMemory.find((product) => product.id === productId)
 }

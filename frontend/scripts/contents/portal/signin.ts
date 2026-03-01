@@ -9,13 +9,13 @@ import { lang, changeLang, createLanguageButton } from "./languagePortal"
 
 const strings: Record<string, () => string> = {
   redirecting: () => `<i class="fa-duotone fa-circle-check"></i> ${lang("redirecting")} ...`,
-  processing: () => `<i class="fa-solid fa-circle-notch fa-spin"></i> ${lang("processing")} ...`,
+  processing: () => `<i class="fa-solid fa-circle-notch fa-spin"></i>`,
   login: () => `<i class="fa-solid fa-arrow-right-to-arc"></i> ${lang("auth_login")}`,
   verify: () => `<i class="fa-solid fa-arrow-right-to-arc"></i> ${lang("auth_verify")}`,
   luunna: () => `<img src="/assets/providers/luunna.svg" class="provider-icon" /><span>Luunna</span>`,
   google: () => `<img src="/assets/providers/google.svg" class="provider-icon" /> <span>Google</span>`,
   discord: () => `<img src="/assets/providers/discord.svg" class="provider-icon" /> <span>Discord</span>`,
-  github: () => `<img src="/assets/providers/github_black.svg" class="provider-icon" /> <span>GitHub</span>`,
+  github: () => `<img src="/assets/providers/github_white.svg" class="provider-icon" /> <span>GitHub</span>`,
   tiktok: () => `<img src="/assets/providers/tiktok.svg" class="provider-icon" /> <span>TikTok</span>`,
   facebook: () => `<img src="/assets/providers/facebook.svg" class="provider-icon" /> <span>Facebook</span>`
 }
@@ -77,7 +77,7 @@ export class LunaSignIn implements ILunaPrimary {
       </a>
 
       <a href="/x/auth/github" class="btn btn-github" id="github-login">
-        <img src="/assets/providers/github_black.svg" class="provider-icon" />
+        <img src="/assets/providers/github_white.svg" class="provider-icon" />
         <span>GitHub</span>
       </a>
 
@@ -179,7 +179,7 @@ export class LunaSignIn implements ILunaPrimary {
       const currHref = btn.getAttribute("href") as string
       const btnId = btn.getAttribute("id")!.toString().replace("-login", "")
 
-      btn.href = IN_DEVELOPMENTS.find((k) => k === btnId) ? window.location.href : `${currHref}`
+      btn.href = IN_DEVELOPMENTS.find((k) => k === btnId) ? window.location.href : `${currHref}?locale=${getLanguage()}`
 
       btn.onclick = async (e) => {
         e.preventDefault()
@@ -192,8 +192,10 @@ export class LunaSignIn implements ILunaPrimary {
           return
         }
 
+        btn.style.width = `${btn.offsetWidth}px`
         btn.innerHTML = strings.processing()
         await waittime(1000)
+        btn.removeAttribute("style")
         this.isLocked = false
         window.location.href = btn.getAttribute("href") as string
         btn.innerHTML = strings[btnId]()

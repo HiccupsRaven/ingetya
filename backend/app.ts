@@ -2,8 +2,8 @@ import express, { Request, Response, NextFunction } from "express"
 import session from "express-session"
 import MongoStore from "connect-mongo"
 import authRouter from "./routes/AuthRouter"
-import orderRouter from "./routes/OrderRouter"
-import productRouter from "./routes/ProductRouter"
+import orderRouter from "./routes/OrdersRouter"
+import productRouter from "./routes/ProductsRouter"
 import cfg from "./cfg"
 import { sessionUserBinder } from "./main/binder"
 import shared from "./main/shared"
@@ -76,7 +76,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   return res.status(500).json({
     ok: false,
     code: 500,
-    msg: "Terjadi Kesalahan - (500)"
+    msg: "error"
   })
 })
 

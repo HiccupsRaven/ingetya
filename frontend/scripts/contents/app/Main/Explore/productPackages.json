@@ -1,0 +1,24 @@
+[
+  {
+    "id": "month",
+    "type": 1,
+    "price": 98000
+  },
+  {
+    "id": "year",
+    "type": 1,
+    "price": 375000
+  },
+  {
+    "id": "guestlist",
+    "note": "guestlist_note",
+    "type": 10,
+    "price": 0
+  },
+  {
+    "id": "guestbook",
+    "note": "guestbook_note",
+    "type": 10,
+    "price": 29000
+  }
+]

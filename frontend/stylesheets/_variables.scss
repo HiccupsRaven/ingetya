@@ -1,28 +1,34 @@
-$colorPrimary: #7380ec;
-$colorDanger: #ff7782;
-$colorSuccess: #41f1b6;
-$colorWarning: #ffbb55;
-$colorWhite: #ffffee;
-$colorInfoDark: #7d8da1;
-$colorInfoLight: #dce1eb;
-$colorDark: #363949;
-$colorLight: rgba(#848bc8, 0.25);
-$colorVariantPrimary: #111e88;
-$colorVariantDark: #677483;
-$colorBackground: #f6f6f9;
-$colorBlack: #333333;
-$colorVariantBlack: #1b1b1b;
-$colorAnchorDark: #5d65ac;
+$px1: #0b111d;
+$px25: #0f1621;
+$px2: #1c222c;
+$pm1: #a395e8;
+$pm2: #2d3048;
 
-$boxShadow: 0 8px 16px $colorLight;
+$white: #f0f2f3;
+$softwhite: #abadaf;
+$swhite: #888b91;
+$black: #00000b;
+$sgreen: #3aa761;
+$sred: #da373b;
+$sgray: #4e5057;
+$syellow: #bda94e;
+$yellow: #fee75b;
+$sblue: #16365c;
+
+$blurple: #5865f1;
+$cred: #ff6e6e;
+$cgreen: #6ccc71;
+$cblue: #2b6fb9;
+
+$scrollbarcolor: $pm1 rgba($px1, 0.5);
 
 $majorGap: clamp(10px, 3vw, 20px);
-$defaultSize: clamp(1rem, 5vw, 1.1rem);
-$dialogueSize: clamp(1.2rem, 5vw, 1.4rem);
+$defaultSize: 1rem;
+$dialogueSize: 1.2rem;
 $bigPadding: clamp(10px, 3vw, 20px);
 $tinyPadding: clamp(3px, 1vw, 5px);
-$smallPadding: clamp(4px, 1vw, 8px);
-$mediumPadding: clamp(5px, 1.2vw, 10px);
+$smallPadding: clamp(5px, 1vw, 10px);
+$mediumPadding: clamp(10px, 1.2vw, 15px);
 $largePadding: clamp(20px, 3vw, 40px);
 
 $textoutline:

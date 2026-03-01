@@ -2,17 +2,21 @@ import { futor, kel } from "../../../lib/kel"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
+import { IResponse } from "../../../types/LibTypes"
 import { IProduct, ProductsMemory } from "../../contentManager"
 import { lang } from "../languageApp"
-import { CMainKey, Main } from "../Main"
+import { IHistoryState, Main } from "../Main"
+import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
+import { Cart } from "./Explore/Cart"
 import { Product } from "./Explore/Product"
 
 export class MainExplore implements CMain {
-  readonly id: CMainKey = "explore"
+  readonly id: INavButtonName = "explore"
   private locked: boolean = false
   private el!: HTMLElement
   main: Main
+  cart: Cart | null = null
   constructor(main: Main) {
     this.main = main
   }
@@ -40,16 +44,10 @@ export class MainExplore implements CMain {
     }
     this.locked = true
 
-    const products = await xhr.get("/x/products")
+    const products = await setAllProducts()
 
     if (!products.ok) {
       itemLoad.innerHTML = `<i class="fa-solid fa-exclamation-triangle"></i><p>${lang("error")}</p>`
-    }
-
-    if (products.code === 401) {
-      await xhr.get("/x/auth/logout")
-      window.location.href = "/portal"
-      return
     }
 
     if (!products.ok) {
@@ -57,10 +55,6 @@ export class MainExplore implements CMain {
       this.locked = false
       return
     }
-
-    products.data.forEach((product: IProduct) => {
-      ProductsMemory.push(product)
-    })
 
     itemLoad.remove()
 
@@ -76,13 +70,42 @@ export class MainExplore implements CMain {
       sectList.append(item.html)
     })
   }
+
+  async handleHistory(state: IHistoryState): Promise<void> {
+    if (state.subView && state.subView === "cart") {
+      const product = state.data.product
+      if (!product.id) return
+      this.locked = true
+      const cart = new Cart(product, this)
+      cart.run()
+      this.setCart(cart)
+    }
+
+    if (this.cart) {
+      this.cart.handleHistory(state)
+    }
+  }
+
+  setCart(newCart: Cart): void {
+    this.cart = newCart
+  }
+
   get isLocked(): boolean {
     return this.locked
+  }
+  lock(newStatus: boolean = true) {
+    this.locked = newStatus
   }
   get html(): HTMLElement {
     return this.el
   }
-  async destroy(): Promise<void> {
+  async destroy(force?: boolean): Promise<void> {
+    if (force) {
+      this.locked = false
+      modal.abort()
+      this.el.remove()
+      return
+    }
     if (this.locked) return
     this.locked = true
     this.el.classList.add("out")
@@ -96,4 +119,24 @@ export class MainExplore implements CMain {
     this.writeData()
     return this
   }
+}
+
+export async function setAllProducts(): Promise<IResponse> {
+  const productsExists = ProductsMemory
+  if (productsExists.length < 1) {
+    const products = await xhr.get("/x/products")
+    if (products.code === 401) {
+      await xhr.get("/x/auth/logout")
+      window.location.href = "/portal"
+      return products
+    }
+    if (!products.ok) {
+      return products
+    }
+    products.data.forEach((product: IProduct) => {
+      ProductsMemory.push(product)
+    })
+    return { ok: true, code: 200, msg: "ok" }
+  }
+  return { ok: true, code: 200, msg: "ok" }
 }

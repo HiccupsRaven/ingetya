@@ -2,7 +2,7 @@ import express, { Request, Response, Router } from "express"
 import { rep } from "../lib/generators"
 import {} from "../types/UserTypes"
 import { isUser } from "../main/middlewares"
-import { getUserOrders, orderNotificationHandler, orderSandBoxNotificationHandler } from "../controllers/OrderController"
+import { checkoutOrder, getUserOrders, orderNotificationHandler, orderSandBoxNotificationHandler } from "../controllers/OrdersController"
 
 const router: Router = express.Router()
 
@@ -12,6 +12,12 @@ router.get("/me", isUser, async (req: Request, res: Response) => {
   const meOrders = rep(await getUserOrders(req.user!.id))
 
   return res.status(meOrders.code).json(meOrders)
+})
+
+router.post("/checkout", isUser, async (req: Request, res: Response) => {
+  const orderCheckout = rep(await checkoutOrder(req.user!.id, req.body))
+
+  return res.status(orderCheckout.code).json(orderCheckout)
 })
 
 router.post("/midtrans/pd/hiccupsraven/devanka/notifications", async (req: Request, res: Response) => {

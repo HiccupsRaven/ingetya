@@ -1,14 +1,24 @@
+import { toBase64 } from "../../../lib/generators"
 import { futor, kel } from "../../../lib/kel"
+import { getLanguage } from "../../../lib/locales"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
 import { AccountMemory } from "../../contentManager"
 import { changeLang, createLanguageButton, lang } from "../languageApp"
-import { CMainKey, Main } from "../Main"
+import { Main } from "../Main"
+import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
 
+function getParsedStateLang(): string {
+  const state = {
+    lang: getLanguage()
+  }
+  return toBase64(state)
+}
+
 export class MainAccount implements CMain {
-  id: CMainKey = "account"
+  id: INavButtonName = "account"
   private locked: boolean = false
   private el!: HTMLElement
   private main: Main
@@ -33,7 +43,7 @@ export class MainAccount implements CMain {
         <input type="text" name="lunaid" id="lunaid" autocomplete="off" value="Loading" readonly />
       </div>
       <div class="field buttons">
-        <a href="https://devanka.id/luunna/portal" target="_blank" class="btn btn-luna"><i class="fa-sharp fa-solid fa-gear"></i> ${lang("acc_luna_settings")}</a>
+        <a href="https://devanka.id/luunna/portal?luna=${getParsedStateLang()}" target="_blank" class="btn btn-luna"><i class="fa-sharp fa-solid fa-gear"></i> ${lang("acc_luna_settings")}</a>
         <a href="/account/logout" class="btn btn-logout"><i class="fa-sharp fa-solid fa-arrow-left-from-arc"></i> ${lang("acc_logout_btn")}</a>
       </div>
     </div>`
@@ -56,14 +66,18 @@ export class MainAccount implements CMain {
     this.locked = true
     const user = await xhr.get("/x/auth/me")
 
+    if (!user.ok) {
+      this.renderData(`${lang("error")} - ${user.code}`, `${lang("error")} - ${user.code}`)
+    }
+
     if (user.code === 401) {
       await xhr.get("/x/auth/logout")
       window.location.href = "/portal"
+      this.locked = false
       return
     }
 
     if (!user.ok) {
-      this.renderData(`${lang("error")} - ${user.code}`, `${lang("error")} - ${user.code}`)
       this.locked = false
       return
     }
@@ -110,14 +124,29 @@ export class MainAccount implements CMain {
     }
   }
 
+  async handleHistory(): Promise<void> {
+    this.locked = false
+    await modal.abort()
+  }
+
+  lock(newStatus: boolean = true) {
+    this.locked = newStatus
+  }
   get isLocked(): boolean {
     return this.locked
   }
   get html(): HTMLElement {
     return this.el
   }
-  async destroy(): Promise<void> {
+  async destroy(force?: boolean): Promise<void> {
+    if (force) {
+      this.locked = false
+      modal.abort()
+      this.el.remove()
+      return
+    }
     if (this.locked) return
+    await modal.abort()
     this.locked = true
     this.el.classList.add("out")
     await waittime()
