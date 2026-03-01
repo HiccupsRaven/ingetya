@@ -32,8 +32,12 @@ export class Order {
     return this.el
   }
   private onClick(): void {
-    // const btnBuy = futor(".btn-buy", this.el)
-    // btnBuy.onclick = () => modal.alert("coming soon")
+    this.el.onclick = () => {
+      if (this.order.status === OrderStatus.Unpaid) {
+        this.orders.lock(false)
+        this.orders.main.setNewSection("invoices")
+      }
+    }
   }
   run(): this {
     this.createElement()

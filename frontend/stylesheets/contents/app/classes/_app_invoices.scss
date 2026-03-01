@@ -1,0 +1,55 @@
+@use "../../../variables" as v;
+
+.app .content .main .sect.sect-invoices {
+  .sect-table {
+    width: 100%;
+    table {
+      width: 100%;
+      border-spacing: 5px;
+      border-collapse: separate;
+      table-layout: auto;
+      border: 1px solid v.$pm2;
+      tr {
+        th,
+        td {
+          padding: v.$mediumPadding;
+          vertical-align: middle;
+          text-align: center;
+          word-wrap: break-word;
+          word-break: break-all;
+        }
+
+        td {
+          cursor: pointer;
+          background-color: v.$pm2;
+          &.transtatus {
+            .btn-view {
+              margin: auto auto;
+              width: fit-content;
+              border-radius: 5px;
+              padding: v.$smallPadding;
+              background-color: v.$px1;
+            }
+            &.pending,
+            &.deny {
+              color: v.$syellow;
+            }
+            &.settlement {
+              color: v.$cgreen;
+            }
+            &.expire,
+            &.cancel {
+              color: v.$cred;
+            }
+          }
+        }
+
+        th {
+          background-color: v.$pm1;
+          color: v.$px1;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

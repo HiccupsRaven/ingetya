@@ -2,17 +2,23 @@
   {
     "id": "month",
     "type": 1,
-    "price": 100000
+    "price": 98000
   },
   {
     "id": "year",
     "type": 1,
-    "price": 1100000
+    "price": 375000
+  },
+  {
+    "id": "guestlist",
+    "note": "guestlist_note",
+    "type": 10,
+    "price": 0
   },
   {
     "id": "guestbook",
     "note": "guestbook_note",
     "type": 10,
-    "price": 12000
+    "price": 29000
   }
 ]

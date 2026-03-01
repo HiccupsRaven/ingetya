@@ -2,7 +2,7 @@ import { futor, kel } from "../../../lib/kel"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
-import { IOrder, OrdersMemory } from "../../contentManager"
+import { IInvoice, InvoicesMemory, IOrder, OrdersMemory } from "../../contentManager"
 import { lang } from "../languageApp"
 import { Main } from "../Main"
 import { INavButtonName } from "../Nav"
@@ -15,6 +15,7 @@ export class MainOrders implements CMain {
   private locked: boolean = false
   private el!: HTMLElement
   main: Main
+  list: Order[] = []
   constructor(main: Main) {
     this.main = main
   }
@@ -51,6 +52,7 @@ export class MainOrders implements CMain {
     if (orders.code === 401) {
       await xhr.get("/x/auth/logout")
       window.location.href = "/portal"
+      this.locked = false
       return
     }
 
@@ -61,9 +63,14 @@ export class MainOrders implements CMain {
     }
 
     OrdersMemory.splice(0, OrdersMemory.length)
+    InvoicesMemory.splice(0, InvoicesMemory.length)
 
-    orders.data.forEach((order: IOrder) => {
+    orders.data.orders.forEach((order: IOrder) => {
       OrdersMemory.push(order)
+    })
+
+    orders.data.invoices.forEach((invoice: IInvoice) => {
+      InvoicesMemory.push(invoice)
     })
 
     await waittime(500)
@@ -80,6 +87,7 @@ export class MainOrders implements CMain {
 
     OrdersMemory.filter((order) => !!order).forEach((order) => {
       const item = new Order(order, this).run()
+      this.list.push(item)
       sectList.append(item.html)
     })
     this.itemAddOnclick()

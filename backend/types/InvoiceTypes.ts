@@ -21,8 +21,8 @@ export interface IInvoiceActions {
 
 export interface IInvoice {
   order_id: string
+  transaction_status: PaymentStatus
   gross_amount?: string
-  transaction_status?: PaymentStatus
   expiry_time?: string
   settlement_time?: string
   va_numbers?: IInvoiceVaNumbers[]
@@ -31,6 +31,9 @@ export interface IInvoice {
   biller_code?: string
   actions?: IInvoiceActions[]
   qr_string?: string
+  iya_expiry: number
+  iya_price: number
+  iya_uid: string
 }
 
 export type IPaymentFeeType = "percent" | "flat"

@@ -8,8 +8,9 @@ export enum OrderStatus {
 }
 
 export interface IOrderData {
-  name?: string
-  date?: number
+  name: string
+  date: number
+  end?: number
 }
 
 export interface IOrder {
@@ -20,5 +21,5 @@ export interface IOrder {
   paymentId: IPaymentId
   addons?: string[]
   status: OrderStatus
-  data?: IOrderData
+  data: IOrderData
 }

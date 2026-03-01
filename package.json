@@ -13,7 +13,7 @@
     "init": "npx tsx backend/initialBuild.ts",
     "sass:home": "sass --watch ./frontend/stylesheets/home.scss ./public/bundle/home.css --style compressed",
     "sass:app": "sass --watch ./frontend/stylesheets/app.scss ./public/bundle/app.css --style compressed",
-    "format": "prettier --write .",
+    "format": "npx --node-options=\"--import tsx\" prettier --write .",
     "check": "prettier --check .",
     "type-check": "tsc -p . --pretty --noEmit",
     "lint": "eslint --ext ts --ext js",

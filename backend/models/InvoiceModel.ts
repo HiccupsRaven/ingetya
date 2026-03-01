@@ -6,8 +6,11 @@ export type IInvoiceModel = Model<IInvoice>
 const schema = new Schema(
   {
     order_id: { type: String, required: true },
+    iya_expiry: { type: Number, required: true },
+    iya_price: { type: Number, required: true },
+    iya_uid: { type: String, required: true },
     gross_amount: { type: String },
-    transaction_status: { type: String },
+    transaction_status: { type: String, required: true },
     expiry_time: { type: String },
     settlement_time: { type: String },
     va_numbers: [

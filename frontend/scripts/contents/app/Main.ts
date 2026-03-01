@@ -3,6 +3,7 @@ import { IAny } from "../../types/LibTypes"
 import { type King } from "./King"
 import { MainAccount } from "./Main/Account"
 import { MainExplore } from "./Main/Explore"
+import { MainInvoices } from "./Main/Invoices"
 import { MainOrders } from "./Main/Orders"
 import { INavButtonName } from "./Nav"
 import { CMain } from "./types/MainTypes"
@@ -17,7 +18,7 @@ export const CMainClass: Record<INavButtonName, (main: Main) => CMain> = {
   account: (main: Main) => new MainAccount(main),
   explore: (main: Main) => new MainExplore(main),
   orders: (main: Main) => new MainOrders(main),
-  tickets: (main: Main) => new MainAccount(main)
+  invoices: (main: Main) => new MainInvoices(main)
 }
 
 let initialSection: INavButtonName = "orders"

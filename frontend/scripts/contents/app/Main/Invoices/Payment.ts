@@ -56,26 +56,27 @@ export class Payment {
 
     const oAddons = productPackages.filter((productPackage) => this.cart.addonsActive.find((addon) => addon === productPackage.id))
 
-    const costPackage = `${lang("cart_package")}: <b>Rp${toMoneyFormat(oPackage.price)}</b> (${lang("cart_" + oPackage.id)})`
-    feewrapper.innerHTML += `${costPackage}<br />`
+    const costPackage = `<p>${lang("cart_package")}: <b>Rp${toMoneyFormat(oPackage.price)}</b> (${lang("cart_" + oPackage.id)})</p>`
+    feewrapper.innerHTML += `${costPackage}`
 
     const addonsTotal = oAddons.reduce((acc, addon) => acc + addon.price, 0)
+
     const addonsGroup = oAddons.map((addon) => lang("cart_" + addon.id)).join(", ")
-    if (addonsTotal >= 1) {
-      const costAddons = `${lang("cart_addon")}: <b>Rp${toMoneyFormat(addonsTotal)}</b> [${addonsGroup}]`
-      feewrapper.innerHTML += `${costAddons}<br />`
+    if (oAddons.length >= 1) {
+      const costAddons = `<p>${lang("cart_addon")}: <b>Rp${toMoneyFormat(addonsTotal)}</b> [${addonsGroup}]</p>`
+      feewrapper.innerHTML += costAddons
     }
 
     const subTotal = oPackage.price + addonsTotal
 
     const oFee = getPaymentFeeTotal(subTotal, this.paymentInfo.fee)
-    const costFee = `${lang("cart_fee")}: <b>Rp${toMoneyFormat(oFee)}</b> (${parseFeeCharge(this.paymentInfo.fee)})`
-    feewrapper.innerHTML += `${costFee}<br />`
+    const costFee = `<p>${lang("cart_fee")}: <b>Rp${toMoneyFormat(oFee)}</b> (${parseFeeCharge(this.paymentInfo.fee)})</p>`
+    feewrapper.innerHTML += `${costFee}`
 
     const total = subTotal + oFee
-    const costTotal = `${lang("cart_total")}: <b>Rp${toMoneyFormat(total)}</b>`
+    const costTotal = `<p>${lang("cart_total")}: <b>Rp${toMoneyFormat(total)}</b></p>`
 
-    feewrapper.innerHTML += `${costTotal}<br />`
+    feewrapper.innerHTML += `${costTotal}`
   }
   private writeSteps(): void {
     const details = futor(".payment-detail", this.el)
@@ -102,12 +103,12 @@ export class Payment {
         itemId: this.cart.packageActive,
         productId: this.cart.product.id,
         paymentMethod: this.paymentInfo.id,
-        addons: this.cart.addonsActive
+        addons: this.cart.addonsActive,
+        orderName: this.cart.orderName
       }
-      const res = await modal.loading(xhr.post("/x/orders/checkout", data))
+      await modal.loading(xhr.post("/x/orders/checkout", data))
+      await modal.alert("Sabar ya, masih proses ngoding-ngoding manja..")
       this.cart.lock(false)
-
-      console.log(res)
     }
   }
   get html(): HTMLDivElement {

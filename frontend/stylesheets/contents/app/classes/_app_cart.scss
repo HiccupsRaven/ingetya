@@ -29,8 +29,8 @@
       padding: v.$bigPadding;
       text-align: center;
       margin-bottom: v.$bigPadding;
-      font-size: calc(v.$bigPadding * 1.5);
-      font-weight: 600;
+      font-size: calc(v.$dialogueSize * 1.5);
+      font-weight: 900;
       text-shadow: v.$textshadow;
       border-radius: 10px;
       background-color: v.$px2;
@@ -97,6 +97,10 @@
             padding: v.$mediumPadding;
             border-radius: 10px;
             background-color: rgba(v.$px1, 0.6);
+            margin-bottom: v.$smallPadding;
+            &:last-child {
+              margin-bottom: 0;
+            }
             &.active {
               background-color: v.$pm1;
               color: v.$px1;
@@ -121,11 +125,12 @@
             padding: v.$bigPadding;
             display: flex;
             justify-content: start;
-            align-items: left;
+            align-items: center;
             gap: v.$bigPadding;
             cursor: pointer;
             .title-text {
               font-weight: 700;
+              text-align: center;
             }
             .arrow-openclose {
               rotate: 0;
@@ -144,6 +149,9 @@
               margin-bottom: v.$mediumPadding;
               font-size: calc(v.$defaultSize * 0.9);
               font-style: italic;
+              p {
+                margin: v.$tinyPadding 0;
+              }
             }
             .btn-buy {
               background-color: v.$pm2;
@@ -205,7 +213,7 @@
   }
   &.out {
     .card {
-      animation: appUpOut 0.3s ease-in;
+      animation: appUpOut 0.3s ease-in forwards;
     }
   }
 }

@@ -66,14 +66,18 @@ export class MainAccount implements CMain {
     this.locked = true
     const user = await xhr.get("/x/auth/me")
 
+    if (!user.ok) {
+      this.renderData(`${lang("error")} - ${user.code}`, `${lang("error")} - ${user.code}`)
+    }
+
     if (user.code === 401) {
       await xhr.get("/x/auth/logout")
       window.location.href = "/portal"
+      this.locked = false
       return
     }
 
     if (!user.ok) {
-      this.renderData(`${lang("error")} - ${user.code}`, `${lang("error")} - ${user.code}`)
       this.locked = false
       return
     }

@@ -76,7 +76,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   return res.status(500).json({
     ok: false,
     code: 500,
-    msg: "Terjadi Kesalahan - (500)"
+    msg: "error"
   })
 })
 

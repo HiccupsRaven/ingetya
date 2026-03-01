@@ -33,7 +33,7 @@ export class Cart {
       <div class="title">${this.product.name}</div>
       <div class="field input-wrapper">
         <label for="name" class="label">${lang("cart_order_note")}</label>
-        <input type="text" name="name" id="name" autocomplete="off" placeholder="Wedding Rudi 27 Mei" />
+        <input type="text" name="name" id="name" autocomplete="off" placeholder="Wedding Rudi Next Week" />
         <p class="sm">${lang("cart_notice")}</p>
       </div>
       <div class="field expiry">
@@ -91,7 +91,8 @@ export class Cart {
     this.payments.forEach((payment) => payment.updateCharge())
   }
   activateAddon(packageId: IProductId, newStatus: boolean = true): void {
-    this.addons.find((addon) => addon.activate(newStatus))
+    const addon = this.addons.find((addon) => addon.id === packageId)
+    addon?.activate(newStatus)
 
     if (newStatus === true) {
       if (this.addonsActive.includes(packageId)) return
@@ -112,6 +113,11 @@ export class Cart {
       this.payments.push(payment)
       paymentWrapper.append(payment.html)
     })
+  }
+  get orderName(): string | null {
+    const inp = futor("input#name", this.el) as HTMLInputElement
+    const name = inp.value.trim()
+    return name.length < 1 ? null : name
   }
   private onCancelPayment(): void {
     const btnCancel = futor(".btn-cancel-payment", this.el)

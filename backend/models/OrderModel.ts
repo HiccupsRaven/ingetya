@@ -13,8 +13,9 @@ const schema = new Schema(
     addons: { type: [String] },
     status: { type: Number, required: true },
     data: {
-      name: { type: String },
-      date: { type: Number }
+      name: { type: String, required: true },
+      date: { type: Number, required: true },
+      end: { type: Number }
     }
   },
   {

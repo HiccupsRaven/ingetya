@@ -4,7 +4,7 @@ import { type King } from "./King"
 import { lang } from "./languageApp"
 import { NavButton } from "./Nav/NavButton"
 
-export type INavButtonName = "orders" | "explore" | "account" | "tickets"
+export type INavButtonName = "orders" | "explore" | "account" | "invoices"
 
 interface IButtonData {
   name: INavButtonName
@@ -14,7 +14,7 @@ interface IButtonData {
 const buttonData: IButtonData[] = [
   { name: "orders", icon: "fa-sharp fa-solid fa-shopping-bag" },
   { name: "explore", icon: "fa-sharp fa-solid fa-compass" },
-  { name: "tickets", icon: "fa-sharp fa-solid fa-comment-dots" },
+  { name: "invoices", icon: "fa-sharp fa-solid fa-credit-card" },
   { name: "account", icon: "fa-sharp fa-solid fa-user" }
 ]
 

@@ -23,12 +23,12 @@ $cblue: #2b6fb9;
 $scrollbarcolor: $pm1 rgba($px1, 0.5);
 
 $majorGap: clamp(10px, 3vw, 20px);
-$defaultSize: clamp(1rem, 5vw, 1.1rem);
-$dialogueSize: clamp(1.2rem, 5vw, 1.4rem);
+$defaultSize: 1rem;
+$dialogueSize: 1.2rem;
 $bigPadding: clamp(10px, 3vw, 20px);
 $tinyPadding: clamp(3px, 1vw, 5px);
-$smallPadding: clamp(4px, 1vw, 8px);
-$mediumPadding: clamp(5px, 1.2vw, 10px);
+$smallPadding: clamp(5px, 1vw, 10px);
+$mediumPadding: clamp(10px, 1.2vw, 15px);
 $largePadding: clamp(20px, 3vw, 40px);
 
 $textoutline:
