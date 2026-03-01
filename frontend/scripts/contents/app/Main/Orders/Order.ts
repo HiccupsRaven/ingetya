@@ -60,6 +60,10 @@ export function parseOrderStatus(order: IOrder): SSKelement[] {
     const orderOnUnpaid = kel("div", "item-waiting unpaid")
     orderOnUnpaid.innerHTML = `<i class="fa-solid fa-credit-card"></i> ${lang("order_status_unpaid")}`
     elements.push(orderOnUnpaid)
+  } else if (order.status === OrderStatus.Canceled) {
+    const orderOnUnpaid = kel("div", "item-waiting unpaid")
+    orderOnUnpaid.innerHTML = `<i class="fa-solid fa-droplet"></i> ${lang("order_status_canceled")}`
+    elements.push(orderOnUnpaid)
   }
 
   return elements

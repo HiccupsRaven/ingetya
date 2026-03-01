@@ -19,7 +19,8 @@ export interface IProduct {
 export enum OrderStatus {
   Unpaid = 1,
   Working = 2,
-  Active = 3
+  Active = 3,
+  Canceled = 4
 }
 
 export interface IOrderData {

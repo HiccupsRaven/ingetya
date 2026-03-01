@@ -8,7 +8,14 @@ const schema = new Schema(
     id: { type: String, required: true },
     userId: { type: String, required: true },
     productId: { type: String, required: true },
-    status: { type: Number, required: true }
+    itemId: { type: String, required: true },
+    paymentId: { type: String, required: true },
+    addons: { type: [String] },
+    status: { type: Number, required: true },
+    data: {
+      name: { type: String },
+      date: { type: Number }
+    }
   },
   {
     versionKey: false

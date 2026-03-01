@@ -18,6 +18,7 @@
   "order_theme": "Template:",
   "order_status_working": "Sedang Dibangun",
   "order_status_unpaid": "Menunggu Pembayaran",
+  "order_status_canceled": "Dibatalkan",
   "order_active_edit": "Edit Template",
   "cart_order_note": "Catatan Pesanan",
   "cart_notice": "Kamu bisa memilih ulang template lain beserta edit semua teks, gambar, dan musik setelah pesanan berhasil dibuat.",

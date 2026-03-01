@@ -10,7 +10,7 @@ import { getAllPaymentInfo } from "../Invoices/getPaymentInfo"
 import { IHistoryState } from "../../Main"
 
 export class Cart {
-  private product: IProduct
+  product: IProduct
   readonly id: string = "cart"
   private el!: HTMLDivElement
   explore: MainExplore
@@ -127,6 +127,9 @@ export class Cart {
       this.locked = false
       this.destroy()
     }
+  }
+  lock(newStatus: boolean = true): void {
+    this.locked = newStatus
   }
   get isLocked(): boolean {
     return this.locked

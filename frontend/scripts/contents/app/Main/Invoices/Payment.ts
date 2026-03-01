@@ -5,12 +5,13 @@ import { IPaymentFee, IPaymentMethodInfo, IPaymentStep } from "./getPaymentInfo"
 import productPackages from "../Explore/productPackages.json"
 import { toMoneyFormat } from "../../../../lib/generators"
 import { getLanguage } from "../../../../lib/locales"
+import modal from "../../../../lib/modal"
+import xhr from "../../../../lib/xhr"
 
 export function getPaymentTotal(subTotal: number, fee: IPaymentFee): number {
-  if (fee.type === "flat") {
-    return Math.floor(subTotal + fee.charge)
-  }
-  return Math.floor(subTotal + (subTotal * fee.charge) / 100)
+  const feeCharge = fee.type === "flat" ? fee.charge : (subTotal * fee.charge) / 100
+
+  return Math.floor(subTotal + feeCharge)
 }
 
 export function getPaymentFeeTotal(subTotal: number, fee: IPaymentFee): number {
@@ -92,6 +93,23 @@ export class Payment {
       this.el.classList.toggle("show")
     }
   }
+  private onBuyClick(): void {
+    const btnBuy = futor(".btn-buy", this.el)
+    btnBuy.onclick = async () => {
+      if (this.cart.isLocked) return
+      this.cart.lock()
+      const data = {
+        itemId: this.cart.packageActive,
+        productId: this.cart.product.id,
+        paymentMethod: this.paymentInfo.id,
+        addons: this.cart.addonsActive
+      }
+      const res = await modal.loading(xhr.post("/x/orders/checkout", data))
+      this.cart.lock(false)
+
+      console.log(res)
+    }
+  }
   get html(): HTMLDivElement {
     return this.el
   }
@@ -100,6 +118,7 @@ export class Payment {
     this.writeSteps()
     this.updateCharge()
     this.onTitleClick()
+    this.onBuyClick()
     return this
   }
 }

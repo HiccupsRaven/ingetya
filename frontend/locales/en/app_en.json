@@ -18,6 +18,7 @@
   "order_theme": "Template:",
   "order_status_working": "Building",
   "order_status_unpaid": "Unpaid",
+  "order_status_canceled": "Canceled",
   "order_active_edit": "Edit Template",
   "cart_order_note": "Order Note",
   "cart_notice": "You can re-select other templates and edit all text, images, and music after the order is successfully created.",
