@@ -1,6 +1,6 @@
-# INGETYA.COM
+# INGETYA
 
-Nama projectnya belum dipikirin
+> https://IngetYa.net
 
 ## Instal *
 

@@ -2,6 +2,7 @@
   "loading": "Memuat",
   "error": "Terjadi Kesalahan",
   "optional": "opsional",
+  "back": "Kembali",
   "sdate_years": "tahun",
   "sdate_months": "bulan",
   "sdate_weeks": "minggu",
@@ -63,5 +64,12 @@
   "invoice_tb_id": "ID",
   "invoice_tb_name": "Nama",
   "invoice_tb_status": "Status",
-  "invoice_tb_nodata": "Belum ada data"
+  "invoice_tb_nodata": "Belum ada data",
+  "bill_va_number": "Nomor Virtual Account",
+  "bill_bank_code": "Kode Bank Tujuan",
+  "bill_amount": "Nominal",
+  "bill_company_code": "Kode Perusahaan",
+  "bill_qr_download": "Download dan simpan sebagai gambar",
+  "bill_expiry_time": "Batas Waktu Pembayaran",
+  "bill_settlement_time": "Waktu Pembayaran Berhasil"
 }

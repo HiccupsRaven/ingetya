@@ -2,6 +2,7 @@
   "loading": "Loading",
   "error": "Something Went Wrong",
   "optional": "optional",
+  "back": "Back",
   "sdate_years": "year(s)",
   "sdate_months": "month(s)",
   "sdate_weeks": "week(s)",
@@ -63,5 +64,12 @@
   "invoice_tb_id": "ID",
   "invoice_tb_name": "Name",
   "invoice_tb_status": "Status",
-  "invoice_tb_nodata": "No data available"
+  "invoice_tb_nodata": "No data available",
+  "bill_va_number": "Virtual Account Number",
+  "bill_bank_code": "Bank Destination Code",
+  "bill_company_code": "Company Code",
+  "bill_amount": "Total Amount",
+  "bill_qr_download": "Save as image",
+  "bill_expiry_time": "Payment Deadline",
+  "bill_settlement_time": "Successful Payment Time"
 }

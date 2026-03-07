@@ -73,7 +73,7 @@ export class MainExplore implements CMain {
 
   async handleHistory(state: IHistoryState): Promise<void> {
     if (state.subView && state.subView === "cart") {
-      const product = state.data.product
+      const product = state.data.product as IProduct
       if (!product.id) return
       this.locked = true
       const cart = new Cart(product, this)

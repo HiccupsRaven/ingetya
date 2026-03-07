@@ -2,12 +2,16 @@ import sdate from "../../../../lib/sdate"
 import { futor, kel } from "../../../../lib/kel"
 import { IInvoice, InvoicesMemory, IOrder, OrdersMemory } from "../../../contentManager"
 import { lang } from "../../languageApp"
+import { MainInvoices } from "../Invoices"
+import { Bill } from "./Bill"
 
 export class Invoice {
   data: IInvoice
   order: IOrder
   private el!: HTMLTableRowElement
-  constructor(data: IInvoice) {
+  invoices: MainInvoices
+  constructor(data: IInvoice, invoices: MainInvoices) {
+    this.invoices = invoices
     this.data = data
     this.order = OrdersMemory.find((itm) => itm!.id === data.order_id)!
   }
@@ -26,11 +30,21 @@ export class Invoice {
     const transactionStatus = futor(".transtatus", this.el)
     transactionStatus.innerHTML = lang("invoice_" + this.data.transaction_status)
   }
+  onClick(): void {
+    this.el.onclick = () => {
+      this.invoices.lock(true)
+      const bill = new Bill(this.data, this.invoices)
+      bill.run()
+      this.invoices.main.addHistory({ sectionId: "invoices", subView: "bill", data: { invoice: this.data } })
+      this.invoices.setBill(bill)
+    }
+  }
   get html(): HTMLTableRowElement {
     return this.el
   }
   run(): this {
     this.createElement()
+    this.onClick()
     return this
   }
 }

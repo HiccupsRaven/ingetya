@@ -4,10 +4,11 @@ import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
 import { IInvoice, InvoicesMemory, IOrder, OrdersMemory } from "../../contentManager"
 import { lang } from "../languageApp"
-import { Main } from "../Main"
+import { IHistoryState, Main } from "../Main"
 import { INavButtonName } from "../Nav"
 import { CMain } from "../types/MainTypes"
 import { setAllProducts } from "./Explore"
+import { Bill } from "./Invoices/Bill"
 import { Invoice } from "./Invoices/Invoice"
 import {} from "./Orders/Order"
 
@@ -17,6 +18,7 @@ export class MainInvoices implements CMain {
   private el!: HTMLElement
   main: Main
   list: Invoice[] = []
+  bill?: Bill
   constructor(main: Main) {
     this.main = main
   }
@@ -103,11 +105,34 @@ export class MainInvoices implements CMain {
   private renderData(): void {
     const tableBody = futor(".table-body", this.el)
 
-    InvoicesMemory.filter((invoice) => !!invoice).forEach((invoice) => {
-      const item = new Invoice(invoice).run()
-      this.list.push(item)
-      tableBody.append(item.html)
-    })
+    InvoicesMemory.filter((invoice) => !!invoice)
+      .sort((a, b) => {
+        if (a.iya_expiry > b.iya_expiry) return -1
+        if (a.iya_expiry < b.iya_expiry) return 1
+        return 0
+      })
+      .forEach((invoice) => {
+        const item = new Invoice(invoice, this).run()
+        this.list.push(item)
+        tableBody.append(item.html)
+      })
+  }
+  async handleHistory(state: IHistoryState): Promise<void> {
+    if (state.subView && state.subView === "bill") {
+      const invoice = state.data.invoice as IInvoice
+      if (!invoice.order_id) return
+      this.locked = true
+      const bill = new Bill(invoice, this)
+      bill.run()
+      this.setBill(bill)
+    }
+
+    if (this.bill) {
+      this.bill.handleHistory(state)
+    }
+  }
+  setBill(newBill: Bill): void {
+    this.bill = newBill
   }
   lock(newStatus: boolean = true) {
     this.locked = newStatus

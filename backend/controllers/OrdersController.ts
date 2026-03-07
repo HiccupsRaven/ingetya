@@ -56,7 +56,6 @@ export async function hasOrderLimit(uid: string): Promise<boolean> {
 
 export async function checkoutOrder(uid: string, s: IAny): Promise<IResTemp> {
   // yang ini palsu karna buat biar ga masuk prod dulu
-
   if (!validate([cfg.LUNA_SECRET], s)) return { code: 404 }
 
   if (!validate(["itemId", "productId", "paymentMethod"], s)) {

@@ -124,7 +124,7 @@ export class Payment {
   }
 }
 
-function createStep(step: IPaymentStep): HTMLDivElement {
+export function createStep(step: IPaymentStep): HTMLDivElement {
   const el = kel("div", "method-wrapper")
   const methodName = kel("div", "method-name", { e: step.name })
   const methodSteps = kel("div", "method-steps")

@@ -1,6 +1,6 @@
 {
   "name": "ingetya",
-  "version": "1.0.0-wip.4",
+  "version": "1.0.0-wip.5",
   "description": "Ya inget",
   "main": "dist/server.js",
   "scripts": {
@@ -50,6 +50,7 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mongoose": "^9.1.6",
+    "qrcode": "^1.5.4",
     "webfont-awesome-pro": "1.2.4"
   },
   "devDependencies": {
@@ -60,6 +61,7 @@
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.18.2",
     "@types/node": "^25.2.0",
+    "@types/qrcode": "^1.5.6",
     "@typescript/native-preview": "^7.0.0-dev.20260204.1",
     "babel-loader": "^10.0.0",
     "clean-webpack-plugin": "^4.0.0",

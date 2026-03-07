@@ -200,6 +200,36 @@
           }
         }
       }
+      &.qrcode {
+        width: 100%;
+        text-align: center;
+        a.qr-image {
+          width: fit-content;
+          display: block;
+          margin: 0 auto;
+          padding: v.$bigPadding;
+          border-radius: 10px;
+          overflow: hidden;
+          background-color: v.$px2;
+          text-align: center;
+          text-align-last: center;
+          img {
+            margin: 0 auto;
+            border-radius: 5px;
+            display: block;
+          }
+          span {
+            display: block;
+            margin-top: v.$smallPadding;
+            text-align: center;
+            text-align-last: center;
+          }
+        }
+        p {
+          text-align: center;
+          text-align-last: center;
+        }
+      }
       &.cancel-payment {
         .btn-cancel-payment {
           background-color: v.$px1;
@@ -207,6 +237,49 @@
           padding: v.$mediumPadding;
           text-align: center;
           border-radius: 10px;
+        }
+      }
+      &.bank-logo {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: v.$bigPadding;
+        .line {
+          flex-grow: 1;
+          height: 5px;
+          background-color: v.$px2;
+          border-radius: 5px;
+        }
+        img {
+          flex-shrink: 0;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+      &.trans-status {
+        width: 100%;
+        padding: v.$mediumPadding;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .trans-icon {
+          font-size: calc(v.$dialogueSize * 2);
+        }
+        .trans-text {
+          font-size: v.$dialogueSize;
+        }
+        &.status-expire,
+        &.status-cancel {
+          background-color: v.$cred;
+          color: v.$white;
+        }
+        &.status-settlement {
+          background-color: v.$cgreen;
+          color: v.$black;
         }
       }
     }

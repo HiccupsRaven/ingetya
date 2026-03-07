@@ -85,11 +85,17 @@ export class MainOrders implements CMain {
   private renderData(): void {
     const sectList = futor(".sect-list", this.el)
 
-    OrdersMemory.filter((order) => !!order).forEach((order) => {
-      const item = new Order(order, this).run()
-      this.list.push(item)
-      sectList.append(item.html)
-    })
+    OrdersMemory.filter((order) => !!order)
+      .sort((a, b) => {
+        if (a.data.date > b.data.date) return -1
+        if (a.data.date < b.data.date) return 1
+        return 0
+      })
+      .forEach((order) => {
+        const item = new Order(order, this).run()
+        this.list.push(item)
+        sectList.append(item.html)
+      })
     this.itemAddOnclick()
   }
   private itemAddOnclick(): void {
