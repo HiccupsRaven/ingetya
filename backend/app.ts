@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from "express"
+import expressWs, { WebSocketWithHeartbeat } from "express-ws"
 import session from "express-session"
 import MongoStore from "connect-mongo"
 import authRouter from "./routes/AuthRouter"
@@ -9,11 +10,13 @@ import { sessionUserBinder } from "./main/binder"
 import shared from "./main/shared"
 import { isUser } from "./main/middlewares"
 import { getThumbnail } from "./controllers/ThumbnailController"
+import webSocketApp from "./routes/SocketRouter"
 
 const { version } = shared.VERSION
 const { MONGODB_INSTALLED } = shared.DB
 
-const app = express()
+const server = expressWs(express())
+const { app, getWss } = server
 
 app.use(
   session({
@@ -34,6 +37,25 @@ app.use(
 app.use(sessionUserBinder)
 app.use(express.static("public"))
 app.set("view engine", "ejs")
+
+app.ws("/socket", (wsClient, req: Request) => {
+  const ws = wsClient as WebSocketWithHeartbeat
+  webSocketApp(ws, req)
+})
+
+const interval = setInterval(() => {
+  getWss().clients.forEach((client) => {
+    const ws = client as WebSocketWithHeartbeat
+    if (ws.isAlive === false) {
+      return ws.terminate()
+    }
+
+    ws.isAlive = false
+    ws.ping()
+  })
+}, 10000)
+
+getWss().on("close", () => clearInterval(interval))
 
 app.use("/x/auth", authRouter)
 app.use("/x/orders", orderRouter)

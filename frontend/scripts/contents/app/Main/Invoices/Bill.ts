@@ -10,6 +10,7 @@ import { createStep } from "./Payment"
 import { getLanguage } from "../../../../lib/locales"
 import sdate from "../../../../lib/sdate"
 import { toMoneyFormat } from "../../../../lib/generators"
+import socket from "../../../Socket"
 
 let timeInterval: ReturnType<typeof setInterval> | null = null
 
@@ -151,6 +152,7 @@ export class Bill {
     this.el.remove()
   }
   run(): this {
+    socket.send("traffic", { content: `Invoices > Bill > ${this.data.order_id}` })
     this.createElement()
     eapp().append(this.el)
     this.writeData()

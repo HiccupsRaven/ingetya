@@ -8,6 +8,7 @@ import { IProductId, ProductAddon, ProductPackage } from "./ProductPackage"
 import productPackages from "./productPackages.json"
 import { getAllPaymentInfo } from "../Invoices/getPaymentInfo"
 import { IHistoryState } from "../../Main"
+import socket from "../../../Socket"
 
 export class Cart {
   product: IProduct
@@ -154,6 +155,7 @@ export class Cart {
     this.el.remove()
   }
   run(): this {
+    socket.send("traffic", { content: `Explore > Product > ${this.product.name}` })
     this.createElement()
     eapp().append(this.el)
     this.writeThumbnail()

@@ -16,7 +16,7 @@ export function cdUser(req: Request, res: Response, next: NextFunction) {
   const uid = req.user?.id ? req.user.id : ip
 
   if (userCDs.has(uid) && userCDs.get(uid) > Date.now()) {
-    res.status(429).json({ ok: false, code: 429, msg: "TO_MANY_REQUEST" })
+    res.status(429).json({ ok: false, code: 429, msg: "too_many_requests" })
     return
   }
 
@@ -31,19 +31,19 @@ export async function isUser(req: Request, res: Response, next: NextFunction) {
 
   if (!req.user || !req.user.id) {
     if (isGetMethod && !isJsonRequest) return res.redirect("/portal")
-    return res.status(401).json({ ok: false, code: 401, msg: "UNAUTHORIZED" })
+    return res.status(401).json({ ok: false, code: 401, msg: "unauthorized" })
   }
 
   const userExists = await User.exists({ id: req.user.id })
   if (!userExists) {
     if (isGetMethod && !isJsonRequest) return res.redirect("/portal")
-    return res.status(401).json({ ok: false, code: 401, msg: "UNAUTHORIZED" })
+    return res.status(401).json({ ok: false, code: 401, msg: "unauthorized" })
   }
 
   next()
 }
 export async function isMod(req: Request, res: Response, next: NextFunction) {
-  if (!req.user || !req.user.id) return res.status(401).json({ ok: false, code: 401, msg: "UNAUTHORIZED" })
+  if (!req.user || !req.user.id) return res.status(401).json({ ok: false, code: 401, msg: "unauthorized" })
 
   const userIsMod = await User.exists({ id: req.user.id, access: 7 })
   if (!userIsMod) return res.status(403).json({ ok: false, code: 403, msg: "FORBIDDEN" })

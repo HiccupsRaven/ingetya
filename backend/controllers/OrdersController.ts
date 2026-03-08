@@ -10,6 +10,7 @@ import { IInvoice, IPaymentFee, IPaymentOptions, IPaymentTransferAccept } from "
 import { IAny, IResTemp } from "../types/LibTypes"
 import { IOrder, OrderStatus } from "../types/OrderTypes"
 import { IItemPackage } from "../types/SharedTypes"
+import { initSocket } from "./AuthController"
 
 interface IMidtransRequest {
   url: string
@@ -42,7 +43,7 @@ export async function getUserOrders(uid: string): Promise<IResTemp> {
 
   const invoices = await Invoice.find({ iya_uid: uid }).lean()
 
-  return { code: 200, data: { orders, invoices } }
+  return { code: 200, data: { orders, invoices, socket: initSocket(uid), version: shared.VERSION.version } }
 }
 
 export async function hasOrderLimit(uid: string): Promise<boolean> {

@@ -9,8 +9,10 @@ export type IConfigVersion = {
 }
 
 export type IConfigWebhook = {
-  error: string
-  account: string
+  errors: string
+  accounts: string
+  clients: string
+  traffics: string
 }
 
 export interface IItemPackage {

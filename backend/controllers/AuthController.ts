@@ -1,4 +1,4 @@
-import { isProd, rNumber, toBase64 } from "../lib/generators"
+import { isProd, rNumber, rUid, toBase64 } from "../lib/generators"
 import validate from "../lib/validate"
 import cfg from "../cfg"
 import { IUser, IExternalUser, IUserSafe } from "../types/UserTypes"
@@ -7,6 +7,15 @@ import User from "../models/UserModel"
 import guest from "../main/guests"
 import { webhook } from "../main/webhook/webhook"
 import { COLORS } from "../types/EmbedTypes"
+import { ISocketConfig } from "../types/PeerTypes"
+import peer from "../main/peer"
+
+export function initSocket(uid: string): ISocketConfig {
+  const clientId = rUid()
+  peer.register(uid, clientId)
+  const host = isProd ? cfg.APP_HOST : `localhost:${cfg.APP_PORT}`
+  return { id: clientId, host }
+}
 
 export async function getMe(uid: string): Promise<IResTemp> {
   const user = await User.findOne({ id: uid }).lean()
@@ -63,7 +72,7 @@ export async function processThirdParty(usr: IExternalUser): Promise<IResTemp> {
 
   const providersText = usr.data.map((data) => `**ID** ${data.externalId}\n**Email** (${data.provider})\n${data.email}\n**Nickname**\n${data.name || "-"}`)
 
-  webhook("account", {
+  webhook("accounts", {
     title: "Registered",
     description: `**ID** ${userId}\n**Luna** ${usr.id}\n\n${providersText.join("\n\n")}`,
     color: COLORS.LIME,

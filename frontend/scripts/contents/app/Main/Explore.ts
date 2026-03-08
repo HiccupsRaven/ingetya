@@ -4,6 +4,7 @@ import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
 import { IResponse } from "../../../types/LibTypes"
 import { IProduct, ProductsMemory } from "../../contentManager"
+import socket from "../../Socket"
 import { lang } from "../languageApp"
 import { IHistoryState, Main } from "../Main"
 import { INavButtonName } from "../Nav"
@@ -118,6 +119,7 @@ export class MainExplore implements CMain {
     this.el.remove()
   }
   run(): this {
+    socket.send("traffic", { content: "Explore" })
     this.createElement()
     this.writeData()
     return this

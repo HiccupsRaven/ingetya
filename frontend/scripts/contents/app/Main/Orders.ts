@@ -2,7 +2,8 @@ import { futor, kel } from "../../../lib/kel"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
-import { IInvoice, InvoicesMemory, IOrder, OrdersMemory } from "../../contentManager"
+import { InvoicesMemory, OrdersMemory } from "../../contentManager"
+import socket from "../../Socket"
 import { lang } from "../languageApp"
 import { Main } from "../Main"
 import { INavButtonName } from "../Nav"
@@ -65,13 +66,7 @@ export class MainOrders implements CMain {
     OrdersMemory.splice(0, OrdersMemory.length)
     InvoicesMemory.splice(0, InvoicesMemory.length)
 
-    orders.data.orders.forEach((order: IOrder) => {
-      OrdersMemory.push(order)
-    })
-
-    orders.data.invoices.forEach((invoice: IInvoice) => {
-      InvoicesMemory.push(invoice)
-    })
+    socket.init(orders.data)
 
     await waittime(500)
     await setAllProducts()

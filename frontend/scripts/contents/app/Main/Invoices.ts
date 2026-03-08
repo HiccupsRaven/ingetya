@@ -2,7 +2,8 @@ import { futor, kel } from "../../../lib/kel"
 import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
-import { IInvoice, InvoicesMemory, IOrder, OrdersMemory } from "../../contentManager"
+import { InvoicesMemory, OrdersMemory } from "../../contentManager"
+import socket from "../../Socket"
 import { lang } from "../languageApp"
 import { IHistoryState, Main } from "../Main"
 import { INavButtonName } from "../Nav"
@@ -86,13 +87,7 @@ export class MainInvoices implements CMain {
     OrdersMemory.splice(0, OrdersMemory.length)
     InvoicesMemory.splice(0, InvoicesMemory.length)
 
-    orders.data.orders.forEach((order: IOrder) => {
-      OrdersMemory.push(order)
-    })
-
-    orders.data.invoices.forEach((invoice: IInvoice) => {
-      InvoicesMemory.push(invoice)
-    })
+    socket.init(orders.data)
 
     await waittime(500)
     await setAllProducts()
@@ -161,34 +156,9 @@ export class MainInvoices implements CMain {
     this.el.remove()
   }
   run(): this {
+    socket.send("traffic", { content: "Invoices" })
     this.createElement()
     this.writeData()
     return this
   }
 }
-
-// <table class="tg"><thead>
-//   <tr>
-//     <th class="tg-0lax">Tanggal</th>
-//     <th class="tg-0lax">ID</th>
-//     <th class="tg-0lax">Nama</th>
-//     <th class="tg-0lax">Status</th>
-//     <th class="tg-0lax">Aksi</th>
-//   </tr></thead>
-// <tbody>
-//   <tr>
-//     <td class="tg-0lax">11/12/17</td>
-//     <td class="tg-0lax">123</td>
-//     <td class="tg-0lax">HEHE</td>
-//     <td class="tg-0lax">pending</td>
-//     <td class="tg-0lax">lihat</td>
-//   </tr>
-//   <tr>
-//     <td class="tg-0lax">10/12/17</td>
-//     <td class="tg-0lax">234</td>
-//     <td class="tg-0lax">ehek</td>
-//     <td class="tg-0lax">settlement</td>
-//     <td class="tg-0lax">lihat</td>
-//   </tr>
-// </tbody>
-// </table>

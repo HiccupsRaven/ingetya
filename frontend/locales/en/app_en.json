@@ -1,6 +1,8 @@
 {
   "loading": "Loading",
   "error": "Something Went Wrong",
+  "unauthorized": "Error<br/>Please relogin by refreshing this page",
+  "too_many_requests": "You're on cooldown!<br/>Too many requests. Try again later.",
   "optional": "optional",
   "back": "Back",
   "sdate_years": "year(s)",
@@ -19,6 +21,8 @@
   "sdate_sminutes": "m",
   "sdate_sseconds": "s",
   "sdate_ago": "ago",
+  "cloud_timeout": "Timeout: Failed connecting to the server",
+  "cloud_outdated": "Your IngetYa version is outdated. Please update to continue.",
   "nav_orders": "Orders",
   "nav_explore": "Explore Templates",
   "nav_account": "Account Settings",

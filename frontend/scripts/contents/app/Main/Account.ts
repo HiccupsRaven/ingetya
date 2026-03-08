@@ -5,6 +5,7 @@ import modal from "../../../lib/modal"
 import waittime from "../../../lib/waittime"
 import xhr from "../../../lib/xhr"
 import { AccountMemory } from "../../contentManager"
+import socket from "../../Socket"
 import { changeLang, createLanguageButton, lang } from "../languageApp"
 import { Main } from "../Main"
 import { INavButtonName } from "../Nav"
@@ -155,6 +156,7 @@ export class MainAccount implements CMain {
     this.el.remove()
   }
   run(): this {
+    socket.send("traffic", { content: "Account" })
     this.createElement()
     this.writeData()
     this.formListener()

@@ -1,6 +1,8 @@
 {
   "loading": "Memuat",
   "error": "Terjadi Kesalahan",
+  "unauthorized": "Kesalahan<br/>Silakan login ulang dengan refresh halaman ini",
+  "too_many_requests": "Lagi cooldown nih!<br/>Coba lagi dulu aja",
   "optional": "opsional",
   "back": "Kembali",
   "sdate_years": "tahun",
@@ -19,6 +21,8 @@
   "sdate_sminutes": "m",
   "sdate_sseconds": "d",
   "sdate_ago": "yang lalu",
+  "cloud_timeout": "Timeout: Gagal menghubungkan ke server",
+  "cloud_outdated": "Versi IngetYa kamu perlu diupdate biar bisa lanjut dipake",
   "nav_orders": "Pesanan",
   "nav_explore": "Eksplor Template",
   "nav_account": "Pengaturan Akun",

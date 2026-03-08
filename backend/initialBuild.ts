@@ -8,10 +8,9 @@ const CONFIG_VERSION: Record<string, IAny> = { version: "1.0.0-wip.1" }
 const CONFIG_DB: Record<string, IAny> = { MONGODB_INSTALLED: false }
 
 const CONFIG_WEBHOOK: Record<string, IAny> = {
-  chat_id: null,
-  parse_mode: "MarkdownV2",
-  protect_content: true,
-  disable_notification: true
+  account: "00000000",
+  error: "00000000",
+  connection: "00000000"
 }
 
 async function initBuild(): Promise<void> {

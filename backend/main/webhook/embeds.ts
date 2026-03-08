@@ -16,7 +16,11 @@ export function createEmbeds(s: APIEmbed, isInspect?: boolean): APIEmbed[] {
       if (s.provider) data.provider = s.provider
       if (s.thumbnail) data.thumbnail = s.thumbnail
       if (s.timestamp) data.timestamp = new Date()
-      data.title = `${s.title || ""} [Page ${i + 1}/${strings.length}]`.trim()
+
+      if (s.title || strings.length >= 1) {
+        data.title = strings.length <= 1 ? s.title : `${s.title || ""} [Page ${i + 1}/${strings.length}]`.trim()
+      }
+
       if (s.url) data.url = s.url
       if (s.video) data.video = s.url
       return data
