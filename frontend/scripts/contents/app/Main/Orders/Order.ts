@@ -1,8 +1,11 @@
 import { futor, kel } from "../../../../lib/kel"
+import waittime from "../../../../lib/waittime"
 import { SSKelement } from "../../../../types/LibTypes"
-import { IOrder, OrderStatus } from "../../../contentManager"
+import { InvoicesMemory, IOrder, OrderStatus } from "../../../contentManager"
 import { lang } from "../../languageApp"
 import { getProduct } from "../Explore/Product"
+import { MainInvoices } from "../Invoices"
+import { Bill } from "../Invoices/Bill"
 import { MainOrders } from "../Orders"
 
 export class Order {
@@ -32,10 +35,17 @@ export class Order {
     return this.el
   }
   private onClick(): void {
-    this.el.onclick = () => {
+    this.el.onclick = async () => {
       if (this.order.status === OrderStatus.Unpaid) {
         this.orders.lock(false)
         this.orders.main.setNewSection("invoices")
+        await waittime(550)
+        this.orders.main.addHistory({ sectionId: "invoices", subView: `bill/${this.order.id}` })
+        const mainSection = this.orders.main.section as MainInvoices
+        const invoice = InvoicesMemory.find((inv) => inv!.order_id === this.order.id)
+        const bill = new Bill(invoice!, mainSection)
+        bill.run()
+        mainSection.setBill(bill)
       }
     }
   }

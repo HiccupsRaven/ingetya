@@ -43,11 +43,6 @@ export class Main {
     this.el.append(this.section.html)
   }
 
-  /**
-   * Navigasi ke section utama yang baru.
-   * @param sectionId ID dari section baru.
-   * @param fromHistory `true` jika dipanggil dari popstate biar ga looping.
-   */
   async setNewSection(sectionId: INavButtonName, fromHistory: boolean = false, force?: boolean): Promise<void> {
     if (this.locked) return
     if (this.section.id === sectionId) return
@@ -81,13 +76,16 @@ export class Main {
   }
 
   addHistory(state: IHistoryState): void {
-    const url = `#${state.sectionId}${state.subView ? `/${state.subView.replace(/\//g, "-")}` : ""}`
+    const url = `#${state.sectionId}${state.subView ? `/${state.subView}` : ""}`
     history.pushState(state, "", url)
   }
 
   private async handlePopState(event: PopStateEvent): Promise<void> {
     const state: IHistoryState | null = event.state
     this.section.lock(false)
+    if (state && this.section.handleHistory) {
+      this.section.handleHistory(state)
+    }
 
     if (!state) {
       await this.setNewSection("orders", true, true)

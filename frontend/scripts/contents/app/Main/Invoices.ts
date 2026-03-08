@@ -118,9 +118,11 @@ export class MainInvoices implements CMain {
       })
   }
   async handleHistory(state: IHistoryState): Promise<void> {
-    if (state.subView && state.subView === "bill") {
-      const invoice = state.data.invoice as IInvoice
-      if (!invoice.order_id) return
+    if (state.subView && state.subView.startsWith("bill")) {
+      const parts = state.subView.split("/")
+      const invoiceId = parts[1] || "0"
+      const invoice = InvoicesMemory.find((inv) => inv!.order_id === invoiceId)
+      if (!invoice) return
       this.locked = true
       const bill = new Bill(invoice, this)
       bill.run()

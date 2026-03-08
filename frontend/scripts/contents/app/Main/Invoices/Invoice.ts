@@ -35,7 +35,7 @@ export class Invoice {
       this.invoices.lock(true)
       const bill = new Bill(this.data, this.invoices)
       bill.run()
-      this.invoices.main.addHistory({ sectionId: "invoices", subView: "bill", data: { invoice: this.data } })
+      this.invoices.main.addHistory({ sectionId: "invoices", subView: `bill/${this.data.order_id}` })
       this.invoices.setBill(bill)
     }
   }
